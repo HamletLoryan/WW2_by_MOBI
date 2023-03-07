@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartMenu"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/my_color" >
+
+    <ImageView
+        android:id="@+id/start_menu_logo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="32dp"
+        android:src="@drawable/logo" />
+
+    <Button
+        android:id="@+id/play_button"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_above="@+id/hall_of_fame_button"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="10dp"
+        android:text="Play"
+        android:textColor="@color/text_color"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/hall_of_fame_button"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_above="@+id/connect_account_button"
+        android:layout_marginBottom="10dp"
+        android:text="hall of fame"
+        android:textColor="@color/text_color"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <Button
+
+        android:id="@+id/connect_account_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:text="connect account"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/text_color"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
