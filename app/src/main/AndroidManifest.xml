@@ -14,10 +14,10 @@
         android:theme="@style/Theme.WW2InYourHands"
         tools:targetApi="31">
         <activity
-            android:name=".GameScene2Activity"
+            android:name=".GameSceneActivity"
             android:exported="false" />
         <activity
-            android:name=".GameScene1Activity"
+            android:name=".GameStartActivity"
             android:exported="false" />
         <activity
             android:name=".StartMenu"

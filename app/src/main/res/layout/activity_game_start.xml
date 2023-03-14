@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/text_color"
-    tools:context=".GameScene1Activity">
+    tools:context=".GameStartActivity">
 
     <TextView
         android:id="@+id/main_text"

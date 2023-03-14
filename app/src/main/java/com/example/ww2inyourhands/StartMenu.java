@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.view.View;
 
 public class StartMenu extends AppCompatActivity {
 
@@ -22,7 +21,7 @@ public class StartMenu extends AppCompatActivity {
 
 
         connectAccount.setOnClickListener(v-> startActivity(new Intent(StartMenu.this, CreateAccountActivity.class)));
-        playBtn.setOnClickListener(v-> startActivity(new Intent(StartMenu.this, GameScene1Activity.class)));
+        playBtn.setOnClickListener(v-> startActivity(new Intent(StartMenu.this, GameStartActivity.class)));
     }
 
 
