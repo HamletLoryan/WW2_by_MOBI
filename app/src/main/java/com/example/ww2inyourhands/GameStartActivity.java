@@ -15,6 +15,6 @@ public class GameStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_start);
 
         okBtn = findViewById(R.id.ok_button);
-        okBtn.setOnClickListener(v-> startActivity(new Intent(GameStartActivity.this, GameSceneActivity.class)));
+        okBtn.setOnClickListener(v-> startActivity(new Intent(GameStartActivity.this, GameScene.class)));
     }
 }

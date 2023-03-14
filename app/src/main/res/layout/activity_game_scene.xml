@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/text_color"
     tools:context=".GameStartActivity">
 
+
     <TextView
-        android:id="@+id/main_text"
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/varA"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/background"
         android:padding="10dp"
         android:text="After the unsuccessful landing you see that one of your friends is badly injured. You need to do something and leave the place, because the enemy has seen the falling plane."
@@ -19,48 +22,55 @@
         android:textSize="20sp"
         tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/a_variant_text_btn"
+    <Button
+        android:id="@+id/varA"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/b_variant_text_btn"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="22dp"
-        android:background="@drawable/background"
-        android:padding="10dp"
-        android:text="After the unsuccessful landing you see that one of your friends is badly injured. You need to do something and leave the place, because the enemy has seen the falling plane."
+        android:layout_height="65dp"
+        android:layout_above="@+id/varB"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="2dp"
+        android:text="ok"
         android:textColor="@color/text_color"
-        android:textSize="20sp"
+        android:textSize="35sp"
+        android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/b_variant_text_btn"
+    <Button
+        android:id="@+id/varB"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/c_variant_text_btn"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="72dp"
-        android:background="@drawable/background"
-        android:padding="10dp"
-        android:text="After the unsuccessful landing you see that one of your friends is badly injured. You need to do something and leave the place, because the enemy has seen the falling plane."
+        android:layout_height="65dp"
+        android:layout_above="@+id/varC"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="2dp"
+        android:text="ok"
         android:textColor="@color/text_color"
-        android:textSize="20sp"
+        android:textSize="35sp"
+        android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/c_variant_text_btn"
+    <Button
+        android:id="@+id/varC"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
+        android:layout_above="@+id/varD"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="2dp"
+        android:text="ok"
+        android:textColor="@color/text_color"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/varD"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/background"
-        android:padding="10dp"
-        android:text="After the unsuccessful landing you see that one of your friends is badly injured. You need to do something and leave the place, because the enemy has seen the falling plane."
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="32dp"
+        android:text="ok"
         android:textColor="@color/text_color"
-        android:textSize="20sp"
+        android:textSize="35sp"
+        android:textStyle="bold"
         tools:ignore="HardcodedText" />
-
-
 </RelativeLayout>
