@@ -22,6 +22,7 @@ public class StartMenu extends AppCompatActivity {
 
 
         connectAccount.setOnClickListener(v-> startActivity(new Intent(StartMenu.this, CreateAccountActivity.class)));
+        playBtn.setOnClickListener(v-> startActivity(new Intent(StartMenu.this, GameScene1Activity.class)));
     }
 
 
