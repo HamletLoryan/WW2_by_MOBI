@@ -3,6 +3,7 @@ package com.example.ww2inyourhands;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -16,14 +17,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    EditText emailEditText,passwordEditText, confirmPasswordEditText;
+    EditText emailEditText, passwordEditText, confirmPasswordEditText;
     Button submitButton;
     ProgressBar progressBar;
     TextView loginBtnTextView;
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
 
     @Override
@@ -37,77 +41,75 @@ public class CreateAccountActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.create_account_button);
         progressBar = findViewById(R.id.progressBar);
         loginBtnTextView = findViewById(R.id.login_btn);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
-        submitButton.setOnClickListener(v-> createAccount());
-        loginBtnTextView.setOnClickListener(v-> finish());
+        submitButton.setOnClickListener(v -> createAccount());
+        loginBtnTextView.setOnClickListener(v -> finish());
 
     }
 
-    void createAccount(){
+    void createAccount() {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         String confirmPassword = confirmPasswordEditText.getText().toString();
 
         boolean isValidated = validateData(email, password, confirmPassword);
-        if(!isValidated){
+        if (!isValidated) {
             return;
         }
 
-        createAccountInFirebase(email,password);
+        createAccountInFirebase(email, password);
     }
 
     private void createAccountInFirebase(String email, String password) {
 
         changeInProgress(true);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(CreateAccountActivity.this,
-                new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(CreateAccountActivity.this, "Account created successfully. Check email to verify",Toast.LENGTH_LONG).show();
-                            firebaseAuth.getCurrentUser().sendEmailVerification();
-                            firebaseAuth.signOut();
-                            finish();
-                        }
-                        else{
-                            Toast.makeText(CreateAccountActivity.this, task.getException().getLocalizedMessage(),Toast.LENGTH_LONG).show();
-                        }
-                    }
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    changeInProgress(false);
+                    startActivity(new Intent(CreateAccountActivity.this, GameStartActivity.class));
+                    Toast.makeText(CreateAccountActivity.this, "Created successfully, please check your email.", Toast.LENGTH_SHORT).show();
+                }else{
+                    changeInProgress(false);
+                    Toast.makeText(CreateAccountActivity.this, "Account creation denied."+ task.getException() +" Try again later.", Toast.LENGTH_SHORT).show();
                 }
-        );
+            }
+        });
     }
 
-    void changeInProgress(boolean inProgress){
-        if(inProgress){
+    void changeInProgress(boolean inProgress) {
+        if (inProgress) {
             progressBar.setVisibility(View.VISIBLE);
             submitButton.setVisibility(View.GONE);
-        }
-        else{
+        } else {
             progressBar.setVisibility(View.GONE);
             submitButton.setVisibility(View.VISIBLE);
         }
 
     }
 
-    boolean validateData(String email, String password, String confirmPassword){
+    boolean validateData(String email, String password, String confirmPassword) {
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText.setError("Email is invalid");
             return false;
         }
 
 
-        if(!is_Valid_Password(password)){
+        if (!is_Valid_Password(password)) {
             passwordEditText.setError("Password is invalid");
             return false;
         }
-        if(!password.equals(confirmPassword)){
+        if (!password.equals(confirmPassword)) {
             confirmPasswordEditText.setError("Passwords did not match");
             return false;
+        } else {
+            return true;
         }
-        else {return true;}
     }
 
     public static boolean is_Valid_Password(String password) {
@@ -125,7 +127,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
 
 
-        return (charCount >= 1  && numCount >= 1);
+        return (charCount >= 1 && numCount >= 1);
     }
 
     private static boolean isNumeric(char ch) {

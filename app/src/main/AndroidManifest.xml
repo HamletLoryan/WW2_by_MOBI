@@ -14,6 +14,9 @@
         android:theme="@style/Theme.WW2InYourHands"
         tools:targetApi="31">
         <activity
+            android:name=".SlotsActivity"
+            android:exported="false" />
+        <activity
             android:name=".StartNewOrContinueActivity"
             android:exported="false" />
         <activity
