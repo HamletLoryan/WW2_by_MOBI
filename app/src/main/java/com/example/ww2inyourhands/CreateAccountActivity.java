@@ -69,17 +69,18 @@ public class CreateAccountActivity extends AppCompatActivity {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     changeInProgress(false);
-                    startActivity(new Intent(CreateAccountActivity.this, GameStartActivity.class));
+                    startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
                     Toast.makeText(CreateAccountActivity.this, "Created successfully, please check your email.", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     changeInProgress(false);
-                    Toast.makeText(CreateAccountActivity.this, "Account creation denied."+ task.getException() +" Try again later.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountActivity.this, "Account creation denied." + task.getException() + " Try again later.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
 
     void changeInProgress(boolean inProgress) {
         if (inProgress) {
@@ -99,11 +100,27 @@ public class CreateAccountActivity extends AppCompatActivity {
             return false;
         }
 
-
-        if (!is_Valid_Password(password)) {
-            passwordEditText.setError("Password is invalid");
+        if (!isThePasswordLengthValid(password)) {
+            passwordEditText.setError("The password must contain at least eight characters.");
             return false;
         }
+        if (!isThePasswordContainingDigits(password)) {
+            passwordEditText.setError("The password must contain at least one digit.");
+            return false;
+        }
+        if (!isThePasswordContainingCapitals(password)) {
+            passwordEditText.setError("The password must contain at least one Uppercase character.");
+            return false;
+        }
+        if (!isThePasswordContainingLowercaseChars(password)) {
+            passwordEditText.setError("The password must contain at least one lowercase character.");
+            return false;
+        }
+        if (!isThePasswordContainingSigns(password)) {
+            passwordEditText.setError("The password must contain at least one sign character.");
+            return false;
+        }
+
         if (!password.equals(confirmPassword)) {
             confirmPasswordEditText.setError("Passwords did not match");
             return false;
@@ -112,22 +129,67 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
     }
 
-    public static boolean is_Valid_Password(String password) {
+    public static boolean isThePasswordContainingDigits(String password) {
 
-        if (password.length() < 8) return false;
 
-        int charCount = 0;
         int numCount = 0;
         for (int i = 0; i < password.length(); i++) {
 
             char ch = password.charAt(i);
 
             if (isNumeric(ch)) numCount++;
-            else if (isCapitalLetter(ch)) charCount++;
         }
 
 
-        return (charCount >= 1 && numCount >= 1);
+        return (numCount >= 1);
+    }
+
+    public static boolean isThePasswordContainingCapitals(String password) {
+
+        int capitalCharCount = 0;
+        for (int i = 0; i < password.length(); i++) {
+
+            char ch = password.charAt(i);
+
+            if (isCapitalLetter(ch)) capitalCharCount++;
+        }
+
+
+        return (capitalCharCount >= 1);
+    }
+
+    public static boolean isThePasswordContainingLowercaseChars(String password) {
+
+        int lowercaseCharCount = 0;
+        for (int i = 0; i < password.length(); i++) {
+
+            char ch = password.charAt(i);
+
+            if (isLowercaseLetter(ch)) lowercaseCharCount++;
+        }
+
+
+        return (lowercaseCharCount >= 1);
+    }
+
+    public static boolean isThePasswordContainingSigns(String password) {
+
+        int signCount = 0;
+        for (int i = 0; i < password.length(); i++) {
+
+            char ch = password.charAt(i);
+
+            if (isASign(ch)) signCount++;
+        }
+
+
+        return (signCount >= 1);
+    }
+
+    public static boolean isThePasswordLengthValid(String password) {
+
+        return (password.length() >= 8);
+
     }
 
     private static boolean isNumeric(char ch) {
@@ -136,5 +198,13 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     public static boolean isCapitalLetter(char ch) {
         return (ch >= 'A' && ch <= 'Z');
+    }
+
+    public static boolean isLowercaseLetter(char ch) {
+        return (ch >= 'a' && ch <= 'z');
+    }
+
+    public static boolean isASign(char ch) {
+        return (ch >= '!' && ch <= '/' || ch >= ':' && ch <= '@');
     }
 }

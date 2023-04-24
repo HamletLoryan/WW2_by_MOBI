@@ -88,6 +88,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:hint="Confirm Password "
+        android:longClickable="false"
         android:id="@+id/confirm_password_edit_text"
         android:inputType="textPassword"
         android:background="@drawable/rounded_corner"

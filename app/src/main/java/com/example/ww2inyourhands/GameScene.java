@@ -2,6 +2,7 @@ package com.example.ww2inyourhands;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.widget.Button;
@@ -27,5 +28,30 @@ public class GameScene extends AppCompatActivity {
         variantBBtn = (Button)findViewById(R.id.varB);
         variantCBtn = (Button)findViewById(R.id.varC);
         variantDBtn = (Button)findViewById(R.id.varD);
+
+        variantABtn.setTransformationMethod(null);
+        variantBBtn.setTransformationMethod(null);
+        variantCBtn.setTransformationMethod(null);
+        variantDBtn.setTransformationMethod(null);
+
+        variantABtn.setOnClickListener(v-> varA());
+        variantBBtn.setOnClickListener(v-> varB());
+        variantCBtn.setOnClickListener(v-> varC());
+        variantDBtn.setOnClickListener(v-> varD());
+
+        story.startPoint();
+    }
+
+    public void varA(){
+        story.setPosition(story.nextPositionA);
+    }
+    public void varB(){
+        story.setPosition(story.nextPositionB);
+    }
+    public void varC(){
+        story.setPosition(story.nextPositionC);
+    }
+    public void varD(){
+        story.setPosition(story.nextPositionD);
     }
 }
