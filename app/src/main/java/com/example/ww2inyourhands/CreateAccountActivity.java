@@ -59,12 +59,23 @@ public class CreateAccountActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(CreateAccountActivity.this, "Account successfully created. ", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
-                                finish();
+                                firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(CreateAccountActivity.this, "Account successfully created. Please verify your email. ", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
+                                            finish();
+                                        }
+                                        else{
+                                            Toast.makeText(CreateAccountActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                                
                             }
                             else{
-                                Toast.makeText(CreateAccountActivity.this, "Error!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccountActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
