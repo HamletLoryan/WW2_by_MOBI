@@ -1,10 +1,12 @@
 package com.example.ww2inyourhands;
 
+import android.content.Context;
 import android.view.View;
 
 public class Story {
 
     GameScene gs;
+
     String nextPositionA, nextPositionB, nextPositionC, nextPositionD, currentPosition;
 
     public Story(GameScene gs){
@@ -45,6 +47,8 @@ public class Story {
         nextPositionD = "kitchen";
 
         currentPosition = "startPoint";
+
+
     }
 
     public void commander(){

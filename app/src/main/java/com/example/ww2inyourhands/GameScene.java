@@ -2,6 +2,7 @@ package com.example.ww2inyourhands;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -12,10 +13,11 @@ import android.widget.TextView;
 public class GameScene extends AppCompatActivity {
 
     Story story = new Story(this);
+    WorkingWithSaves wws = new WorkingWithSaves();
 
     ImageView sceneImage;
     TextView sceneText;
-    Button variantABtn, variantBBtn, variantCBtn, variantDBtn;
+    Button variantABtn, variantBBtn, variantCBtn, variantDBtn, saveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class GameScene extends AppCompatActivity {
         variantBBtn = (Button)findViewById(R.id.varB);
         variantCBtn = (Button)findViewById(R.id.varC);
         variantDBtn = (Button)findViewById(R.id.varD);
+        saveBtn = (Button)findViewById(R.id.saveBtn);
+
 
         variantABtn.setTransformationMethod(null);
         variantBBtn.setTransformationMethod(null);
@@ -38,6 +42,7 @@ public class GameScene extends AppCompatActivity {
         variantBBtn.setOnClickListener(v-> varB());
         variantCBtn.setOnClickListener(v-> varC());
         variantDBtn.setOnClickListener(v-> varD());
+        saveBtn.setOnClickListener(v-> saveBtn());
 
         story.startPoint();
     }
@@ -53,5 +58,11 @@ public class GameScene extends AppCompatActivity {
     }
     public void varD(){
         story.setPosition(story.nextPositionD);
+    }
+
+    public void saveBtn(){
+
+        Context ctx = null;
+        wws.setSaveOne(ctx);
     }
 }

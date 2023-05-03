@@ -26,8 +26,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView loginBtnTextView;
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
     @Override
@@ -42,58 +41,41 @@ public class CreateAccountActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         loginBtnTextView = findViewById(R.id.login_btn);
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
 
-        submitButton.setOnClickListener(v -> createAccount());
-        loginBtnTextView.setOnClickListener(v -> finish());
 
-    }
+        loginBtnTextView.setOnClickListener(v -> startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class)));
 
-    void createAccount() {
-        String email = emailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-        String confirmPassword = confirmPasswordEditText.getText().toString();
-
-        boolean isValidated = validateData(email, password, confirmPassword);
-        if (!isValidated) {
-            return;
-        }
-
-        createAccountInFirebase(email, password);
-    }
-
-    private void createAccountInFirebase(String email, String password) {
-
-        changeInProgress(true);
-
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    changeInProgress(false);
-                    startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
-                    Toast.makeText(CreateAccountActivity.this, "Created successfully, please check your email.", Toast.LENGTH_SHORT).show();
-                } else {
-                    changeInProgress(false);
-                    Toast.makeText(CreateAccountActivity.this, "Account creation denied." + task.getException() + " Try again later.", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                String email, password, confirmPassword;
+                email = String.valueOf(emailEditText.getText());
+                password = String.valueOf(passwordEditText.getText());
+                confirmPassword = String.valueOf(confirmPasswordEditText.getText());
+
+                if (dataIsValid(email, password, confirmPassword)){
+
+                    firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(CreateAccountActivity.this, "Account successfully created. ", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
+                                finish();
+                            }
+                            else{
+                                Toast.makeText(CreateAccountActivity.this, "Error!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
-    }
-
-
-    void changeInProgress(boolean inProgress) {
-        if (inProgress) {
-            progressBar.setVisibility(View.VISIBLE);
-            submitButton.setVisibility(View.GONE);
-        } else {
-            progressBar.setVisibility(View.GONE);
-            submitButton.setVisibility(View.VISIBLE);
-        }
 
     }
 
-    boolean validateData(String email, String password, String confirmPassword) {
+
+    boolean dataIsValid(String email, String password, String confirmPassword) {
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText.setError("Email is invalid");
