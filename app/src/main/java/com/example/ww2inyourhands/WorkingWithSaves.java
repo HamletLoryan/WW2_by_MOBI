@@ -20,7 +20,8 @@ public class WorkingWithSaves {
     Story story;
 
 
-    public void  WorkingWithSaves(View v){
+    public void  WorkingWithSaves(Story story){
+        this.story = story;
     }
 
 

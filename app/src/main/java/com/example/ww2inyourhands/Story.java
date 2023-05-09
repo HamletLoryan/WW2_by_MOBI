@@ -1,6 +1,4 @@
 package com.example.ww2inyourhands;
-
-import android.content.Context;
 import android.view.View;
 
 public class Story {
@@ -24,22 +22,24 @@ public class Story {
 
     }
 
-    public void showAllButtons(){
-        gs.variantABtn.setVisibility(View.VISIBLE);
-        gs.variantBBtn.setVisibility(View.VISIBLE);
-        gs.variantABtn.setVisibility(View.VISIBLE);
-        gs.variantBBtn.setVisibility(View.VISIBLE);
-    }
+//    public void showAllButtons(){
+//        gs.variantABtn.setVisibility(View.VISIBLE);
+//        gs.variantBBtn.setVisibility(View.VISIBLE);
+//        gs.variantABtn.setVisibility(View.VISIBLE);
+//        gs.variantBBtn.setVisibility(View.VISIBLE);
+//    }
+
 
     public void startPoint(){
 
         gs.sceneImage.setImageResource(R.drawable.usa_flag);
-        gs.sceneText.setText("1943. You are a private soldier in USA army. You will get your mission objectives from Commander. He is waiting for you near the aircraft.");
+        gs.sceneText.setText(R.string.startPoint);
+
 
         gs.variantABtn.setVisibility(View.INVISIBLE);
         gs.variantBBtn.setVisibility(View.INVISIBLE);
-        gs.variantCBtn.setText("Go to aircraft");
-        gs.variantDBtn.setText("Go to kitchen to eat something");
+        gs.variantCBtn.setText(R.string.startPointBtnD);
+        gs.variantDBtn.setText(R.string.startPointBtnD);
 
         nextPositionA = null;
         nextPositionB = null;
@@ -54,12 +54,12 @@ public class Story {
     public void commander(){
 
         gs.sceneImage.setImageResource(R.drawable.commander);
-        gs.sceneText.setText("Private. Your mission is to parachute down behind enemies front line,find the division Delta, and get them back home.  ");
+        gs.sceneText.setText(R.string.commander);
 
         gs.variantABtn.setVisibility(View.INVISIBLE);
         gs.variantBBtn.setVisibility(View.INVISIBLE);
         gs.variantCBtn.setVisibility(View.INVISIBLE);
-        gs.variantDBtn.setText("YES SIR!");
+        gs.variantDBtn.setText(R.string.commanderBtnD);
 
         nextPositionA = null;
         nextPositionB = null;
@@ -71,12 +71,12 @@ public class Story {
     public void authorSpeech1(){
 
         gs.sceneImage.setImageResource(R.drawable.author_speech);
-        gs.sceneText.setText("Now, you have your objective, you can prepare your inventory and then go to bar, may be for the last time.");
+        gs.sceneText.setText(R.string.authorSpeech1);
 
         gs.variantABtn.setVisibility(View.INVISIBLE);
         gs.variantBBtn.setVisibility(View.INVISIBLE);
         gs.variantCBtn.setVisibility(View.INVISIBLE);
-        gs.variantDBtn.setText("Go to barrack");
+        gs.variantDBtn.setText(R.string.authorSpeech1BtnD);
 
         nextPositionA = null;
         nextPositionB = null;
@@ -88,12 +88,12 @@ public class Story {
     public void kitchen(){
 
         gs.sceneImage.setImageResource(R.drawable.commander);
-        gs.sceneText.setText("Commander: Hey, private! What are you doing? Come here .");
+        gs.sceneText.setText(R.string.kitchen);
 
         gs.variantABtn.setVisibility(View.INVISIBLE);
         gs.variantBBtn.setVisibility(View.INVISIBLE);
         gs.variantCBtn.setVisibility(View.INVISIBLE);
-        gs.variantDBtn.setText("Go back to Commander");
+        gs.variantDBtn.setText(R.string.kitchenBtnD);
 
         nextPositionA = null;
         nextPositionB = null;

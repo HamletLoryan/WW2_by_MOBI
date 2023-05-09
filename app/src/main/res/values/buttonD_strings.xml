@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="startPointBtnD">Go to kitchen to eat something</string>
+    <string name="commanderBtnD">YES SIR!</string>
+    <string name="authorSpeech1BtnD">Go to barrack</string>
+    <string name="kitchenBtnD">Go back to Commander</string>
+
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="startPoint">1941. You are a private soldier in USA army. You will get your mission objectives from Captain Miller. He is waiting for you near the aircraft.</string>
+    <string name="commander">Private. Your mission is to parachute down behind enemies front line,find the division Delta, and get them back home.  </string>
+    <string name="authorSpeech1">Now, you have your objective, you can prepare your inventory and then go to bar, may be for the last time.</string>
+    <string name="kitchen">Commander: Hey, private! What are you doing? Come here .</string>
+
+</resources>
