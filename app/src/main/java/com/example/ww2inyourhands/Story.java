@@ -1,5 +1,4 @@
 package com.example.ww2inyourhands;
-import android.content.SharedPreferences;
 import android.view.View;
 
 public class Story {
@@ -18,17 +17,12 @@ public class Story {
             case "commander": commander(); break;
             case "authorSpeech1": authorSpeech1(); break;
             case "kitchen": kitchen(); break;
+            default: startPoint(); break;
 
         }
 
     }
 
-//    public void showAllButtons(){
-//        gs.variantABtn.setVisibility(View.VISIBLE);
-//        gs.variantBBtn.setVisibility(View.VISIBLE);
-//        gs.variantABtn.setVisibility(View.VISIBLE);
-//        gs.variantBBtn.setVisibility(View.VISIBLE);
-//    }
 
 
     public void startPoint(){

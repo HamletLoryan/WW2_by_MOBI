@@ -26,31 +26,6 @@ public class GameScene extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_scene);
 
-//        if (SlotsActivity.Slot1){
-//            SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
-//            String currentPosition = sp.getString("SaveSlot1", null);
-//            story.setPosition(currentPosition);
-//            SlotsActivity.Slot1 = false;
-//        }else if (SlotsActivity.Slot2){
-//            SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
-//            String currentPosition = sp.getString("SaveSlot2", null);
-//            story.setPosition(currentPosition);
-//            SlotsActivity.Slot2 = false;
-//        }else if (SlotsActivity.Slot3){
-//            SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
-//            String currentPosition = sp.getString("SaveSlot3", null);
-//            story.setPosition(currentPosition);
-//            SlotsActivity.Slot3 = false;
-//        }else if (SlotsActivity.AutoSave){
-//            SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
-//            String currentPosition = sp.getString("AutoSave", null);
-//            story.setPosition(currentPosition);
-//            SlotsActivity.AutoSave = false;
-//        }else {
-//            story.startPoint();
-//        }
-        story.startPoint();
-
         sceneImage = findViewById(R.id.image);
         sceneText = findViewById(R.id.text);
         variantABtn = (Button)findViewById(R.id.varA);
@@ -64,6 +39,33 @@ public class GameScene extends AppCompatActivity {
         variantBBtn.setTransformationMethod(null);
         variantCBtn.setTransformationMethod(null);
         variantDBtn.setTransformationMethod(null);
+
+        if (SlotsActivity.Slot1){
+            SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
+            String currentPosition = sp.getString("SaveSlot1", null);
+            story.setPosition(currentPosition);
+            SlotsActivity.Slot1 = false;
+        }else if (SlotsActivity.Slot2){
+            SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
+            String currentPosition = sp.getString("SaveSlot2", null);
+            story.setPosition(currentPosition);
+            SlotsActivity.Slot2 = false;
+        }else if (SlotsActivity.Slot3){
+            SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
+            String currentPosition = sp.getString("SaveSlot3", null);
+            story.setPosition(currentPosition);
+            SlotsActivity.Slot3 = false;
+        }else if (SlotsActivity.AutoSave){
+            SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
+            String currentPosition = sp.getString("AutoSave", null);
+            story.setPosition(currentPosition);
+            SlotsActivity.AutoSave = false;
+        }else {
+            story.startPoint();
+        }
+//        story.startPoint();
+
+
 
         variantABtn.setOnClickListener(v-> varA());
         variantBBtn.setOnClickListener(v-> varB());
