@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_color"
+    android:orientation="vertical"
+    tools:context=".AccountActivity">
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:padding="8dp"
+        android:text="You are logged in with the following email."
+        android:textColor="@color/my_color"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background"
+        android:layout_below="@+id/text"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:padding="8dp"
+        android:text="##"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/log_out_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginBottom="20dp"
+        android:text="log out"
+        android:textColor="@color/text_color"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

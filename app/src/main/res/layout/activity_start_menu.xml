@@ -54,4 +54,18 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <Button
+
+        android:id="@+id/account_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="25dp"
+        android:text="Account"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/text_color"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>
