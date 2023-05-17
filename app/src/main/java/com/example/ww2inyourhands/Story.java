@@ -1,4 +1,5 @@
 package com.example.ww2inyourhands;
+import android.content.SharedPreferences;
 import android.view.View;
 
 public class Story {
