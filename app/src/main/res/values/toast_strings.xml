@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="logged_out_successfully">Logged out successfully.</string>
+    <string name="account_created_successfully">Account successfully created. Please verify your email.</string>
+    <string name="save_1_saved_successfully">Save 1 saved successfully.</string>
+    <string name="save_2_saved_successfully">Save 2 saved successfully.</string>
+    <string name="save_3_saved_successfully">Save 3 saved successfully.</string>
+    <string name="logged_in_successfully">Logged in successfully.</string>
+    <string name="verify_your_email">Verify your email.</string>
+
+
+</resources>

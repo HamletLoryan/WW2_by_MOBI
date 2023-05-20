@@ -1,6 +1,5 @@
 package com.example.ww2inyourhands;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,9 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -43,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         logInButton = findViewById(R.id.log_in_button);
         createAccountBtnTextView = findViewById(R.id.login_btn);
         firebaseAuth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.progress_bar);
 
         loggedIn = false;
 
@@ -50,47 +47,49 @@ public class LoginActivity extends AppCompatActivity {
 
     createAccountBtnTextView.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, CreateAccountActivity.class)));
 
-        logInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email, password;
-                email = String.valueOf(emailEditText.getText());
-                password = String.valueOf(passwordEditText.getText());
+        logInButton.setOnClickListener(v -> {
+            String email, password;
+            email = String.valueOf(emailEditText.getText());
+            password = String.valueOf(passwordEditText.getText());
 
-                if(TextUtils.isEmpty(email)){
-                    Toast.makeText(LoginActivity.this, "Enter Email!", Toast.LENGTH_SHORT).show();
-                    return;
-                }if(TextUtils.isEmpty(password)){
-                    Toast.makeText(LoginActivity.this, "Enter Password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if(task.isSuccessful()){
-                                            if(Objects.requireNonNull(firebaseAuth.getCurrentUser()).isEmailVerified()) {
-                                                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(LoginActivity.this, StartMenu.class));
-                                                SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
-                                                SharedPreferences.Editor Ed=sp.edit();
-                                                Ed.putBoolean("IsLoggedIn", true);
-                                                Ed.putString("Email",email );
-                                                Ed.putString("Password",password);
-                                                Ed.apply();
-                                loggedIn = true;
-                                finish();
-                            }else{
-                                Toast.makeText(LoginActivity.this, "Verify your email.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else{
-                            Toast.makeText(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            if(TextUtils.isEmpty(email)){
+                emailEditText.setError("Please enter your email.");
+                return;
+            }if(TextUtils.isEmpty(password)){
+                passwordEditText.setError("Please enter your password.");
+                return;
             }
+
+            logInButton.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    if(Objects.requireNonNull(firebaseAuth.getCurrentUser()).isEmailVerified()) {
+                        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+                        SharedPreferences.Editor Ed=sp.edit();
+                        Ed.putBoolean("IsLoggedIn", true);
+                        Ed.putString("Email",email );
+                        Ed.putString("Password",password);
+                        Ed.apply();
+        loggedIn = true;
+                        Toast.makeText(LoginActivity.this, R.string.logged_in_successfully, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, StartMenu.class));
+        finish();
+    }else{
+        Toast.makeText(LoginActivity.this, R.string.verify_your_email, Toast.LENGTH_SHORT).show();
+    }
+}
+else{
+    Toast.makeText(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+}
+});
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(LoginActivity.this, StartMenu.class));
     }
 
 }

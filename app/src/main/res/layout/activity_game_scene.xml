@@ -9,15 +9,12 @@
 
 
     <Button
-        android:id="@+id/saveBtn"
-        android:layout_width="wrap_content"
+        android:contentDescription="Open menu"
+        android:id="@+id/menuBtn"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:text="save"
-        android:textColor="@color/text_color"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText" />
+        android:layout_marginStart="5dp"
+        android:background="@drawable/baseline_menu_24"/>
 
     <ImageView
         android:id="@+id/image"

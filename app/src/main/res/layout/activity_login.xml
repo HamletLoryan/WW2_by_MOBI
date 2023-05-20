@@ -98,6 +98,16 @@
 
             />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:color="@color/my_color"
+            />
+<!-- TODO: change icon-->
 
 
     </LinearLayout>
@@ -108,17 +118,21 @@
         android:layout_below="@id/form_layout"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginHorizontal="30dp">
+        android:layout_marginHorizontal="30dp"
+        >
 
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="             Don't have an account?" />
+            android:text="Don't have an account?"
+            android:textAlignment="textEnd"
+            android:paddingHorizontal="5dp"
+            />
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Account"
+            android:text="Register"
             android:textStyle="bold"
             android:id="@+id/login_btn"/>
 

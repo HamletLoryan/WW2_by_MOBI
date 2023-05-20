@@ -39,6 +39,11 @@ public class StartMenu extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed(){
+
+    }
+
 
 
 

@@ -1,6 +1,6 @@
 package com.example.ww2inyourhands;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,11 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -38,48 +36,49 @@ public class CreateAccountActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password_edit_text);
         confirmPasswordEditText = findViewById(R.id.confirm_password_edit_text);
         submitButton = findViewById(R.id.create_account_button);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progress_bar);
         loginBtnTextView = findViewById(R.id.login_btn);
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-        loginBtnTextView.setOnClickListener(v -> startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class)));
+        loginBtnTextView.setOnClickListener(v -> startActivity(new Intent(
+                CreateAccountActivity.this, LoginActivity.class)));
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email, password, confirmPassword;
-                email = String.valueOf(emailEditText.getText());
-                password = String.valueOf(passwordEditText.getText());
-                confirmPassword = String.valueOf(confirmPasswordEditText.getText());
+        submitButton.setOnClickListener(v -> {
+            String email, password, confirmPassword;
+            email = String.valueOf(emailEditText.getText());
+            password = String.valueOf(passwordEditText.getText());
+            confirmPassword = String.valueOf(confirmPasswordEditText.getText());
 
-                if (dataIsValid(email, password, confirmPassword)){
+            if (dataIsValid(email, password, confirmPassword)){
+                submitButton.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
 
-                    firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            Toast.makeText(CreateAccountActivity.this, "Account successfully created. Please verify your email. ", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
-                                            finish();
-                                        }
-                                        else{
-                                            Toast.makeText(CreateAccountActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                
+                firebaseAuth.createUserWithEmailAndPassword(email,password).
+                        addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        Objects.requireNonNull(firebaseAuth.getCurrentUser()).
+                                sendEmailVerification().addOnCompleteListener(task1 -> {
+                            if(task1.isSuccessful()){
+                                Toast.makeText(CreateAccountActivity.this,
+                                        R.string.account_created_successfully, Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
+                                finish();
                             }
                             else{
-                                Toast.makeText(CreateAccountActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccountActivity.this,
+                                        Objects.requireNonNull(task1.getException()).getMessage(),
+                                        Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    });
-                }
+                        });
+
+                    }
+                    else{
+                        Toast.makeText(CreateAccountActivity.this,
+                                Objects.requireNonNull(task.getException()).getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -200,4 +199,10 @@ public class CreateAccountActivity extends AppCompatActivity {
     public static boolean isASign(char ch) {
         return (ch >= '!' && ch <= '/' || ch >= ':' && ch <= '@');
     }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
+    }
+
 }

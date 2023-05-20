@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,7 +20,7 @@ public class GameScene extends AppCompatActivity {
 
     ImageView sceneImage;
     TextView sceneText;
-    Button variantABtn, variantBBtn, variantCBtn, variantDBtn, saveBtn;
+    Button variantABtn, variantBBtn, variantCBtn, variantDBtn, menuBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class GameScene extends AppCompatActivity {
         variantBBtn = (Button)findViewById(R.id.varB);
         variantCBtn = (Button)findViewById(R.id.varC);
         variantDBtn = (Button)findViewById(R.id.varD);
-        saveBtn = (Button)findViewById(R.id.saveBtn);
+        menuBtn = (Button)findViewById(R.id.menuBtn);
 
 
         variantABtn.setTransformationMethod(null);
@@ -63,7 +64,6 @@ public class GameScene extends AppCompatActivity {
         }else {
             story.startPoint();
         }
-//        story.startPoint();
 
 
 
@@ -71,8 +71,8 @@ public class GameScene extends AppCompatActivity {
         variantBBtn.setOnClickListener(v-> varB());
         variantCBtn.setOnClickListener(v-> varC());
         variantDBtn.setOnClickListener(v-> varD());
-        saveBtn.setOnClickListener(v->
-                showDialog(GameScene.this));
+        menuBtn.setOnClickListener(v->
+                showMenuDialog(GameScene.this));
 
 
 
@@ -112,11 +112,11 @@ public class GameScene extends AppCompatActivity {
         Ed.apply();
     }
 
-    public void showDialog(Activity activity){
+    public void showSavesDialog(Activity activity){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
-        dialog.setContentView(R.layout.custom_dialogbox_otp);
+        dialog.setContentView(R.layout.saves_dialogbox_otp);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         SharedPreferences sp=getSharedPreferences("Saves", MODE_PRIVATE);
         SharedPreferences.Editor Ed=sp.edit();
@@ -124,23 +124,48 @@ public class GameScene extends AppCompatActivity {
         dialogBtn_slot_1.setOnClickListener(v -> {
             Ed.putString("SaveSlot1", story.currentPosition );
             Ed.apply();
-            Toast.makeText(GameScene.this, "Save 1 saved successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameScene.this, R.string.save_1_saved_successfully, Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
         Button dialogBtn_slot_2 = (Button) dialog.findViewById(R.id.slot2);
         dialogBtn_slot_2.setOnClickListener(v -> {
             Ed.putString("SaveSlot2", story.currentPosition );
             Ed.apply();
-            Toast.makeText(GameScene.this, "Save 2 saved successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameScene.this, R.string.save_2_saved_successfully, Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });Button dialogBtn_slot_3 = (Button) dialog.findViewById(R.id.slot3);
         dialogBtn_slot_3.setOnClickListener(v -> {
             Ed.putString("SaveSlot3", story.currentPosition );
             Ed.apply();
-            Toast.makeText(GameScene.this, "Save 3 saved successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameScene.this, R.string.save_3_saved_successfully, Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
         dialog.show();
+    }
+
+
+    public void showMenuDialog(Activity activity){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.menu_dialogbox_otp);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Button dialogBtn_continue = (Button) dialog.findViewById(R.id.continue_button);
+        dialogBtn_continue.setOnClickListener(v -> dialog.dismiss());
+        Button dialogBtn_save = (Button) dialog.findViewById(R.id.save_button);
+        dialogBtn_save.setOnClickListener(v -> {
+            showSavesDialog(GameScene.this);
+            dialog.dismiss();
+        });Button dialogBtn_quit = (Button) dialog.findViewById(R.id.quit_button);
+        dialogBtn_quit.setOnClickListener(v -> {
+            startActivity(new Intent(GameScene.this, StartMenu.class));
+            dialog.dismiss();
+        });
+        dialog.show();
+    }
+    @Override
+    public void onBackPressed(){
+
     }
 
 }

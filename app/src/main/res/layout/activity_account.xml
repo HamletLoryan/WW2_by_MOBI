@@ -16,10 +16,9 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
         android:padding="8dp"
-        android:text="You are logged in with the following email."
+        android:text="@string/you_are_logged_in_with_the_following_email"
         android:textColor="@color/my_color"
-        android:textSize="22sp"
-        tools:ignore="HardcodedText" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/email"
@@ -37,16 +36,24 @@
         tools:ignore="HardcodedText" />
 
     <Button
+        android:contentDescription="@string/log_out"
         android:id="@+id/log_out_btn"
-        android:layout_width="match_parent"
+        android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="60dp"
-        android:layout_marginBottom="20dp"
-        android:text="log out"
-        android:textColor="@color/text_color"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/baseline_logout_24"/>
 
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="40dp"
+        android:visibility="invisible"
+        />
 </RelativeLayout>

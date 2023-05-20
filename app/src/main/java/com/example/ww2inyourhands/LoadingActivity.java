@@ -39,10 +39,12 @@ public class LoadingActivity extends AppCompatActivity {
                             startActivity(new Intent(LoadingActivity.this, StartMenu.class));
                             finish();
                         } else {
-                            Toast.makeText(LoadingActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoadingActivity.this, Objects.requireNonNull(
+                                    task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(LoadingActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoadingActivity.this, Objects.requireNonNull(
+                                task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -52,7 +54,8 @@ public class LoadingActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                                           @Override
                                           public void run() {
-                                              startActivity(new Intent(LoadingActivity.this, StartMenu.class));
+                                              startActivity(new Intent(LoadingActivity
+                                                      .this, StartMenu.class));
                                           }
                                       }, 1000
 
