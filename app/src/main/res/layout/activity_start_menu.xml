@@ -6,16 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".StartMenu"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@color/my_color" >
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main_menu_background" />
 
     <ImageView
         android:id="@+id/start_menu_logo"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:background="@drawable/background"
         android:layout_centerHorizontal="true"
-        android:layout_marginVertical="32dp"
-        android:src="@drawable/logo" />
+        android:layout_marginVertical="50dp"
+        android:src="@drawable/logo"
+        android:importantForAccessibility="no" />
 
     <Button
         android:id="@+id/play_button"
@@ -34,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginHorizontal="30dp"
-        android:layout_above="@+id/connect_account_button"
+        android:layout_above="@+id/account_button"
         android:layout_marginBottom="10dp"
         android:text="hall of fame"
         android:textColor="@color/text_color"
@@ -42,30 +50,16 @@
         android:textStyle="bold" />
 
     <Button
-
-        android:id="@+id/connect_account_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:text="connect account"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/text_color"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-
+        android:contentDescription="Manage account"
         android:id="@+id/account_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="25dp"
-        android:layout_marginEnd="25dp"
-        android:text="Account"
+        android:background="@drawable/baseline_account_circle_24"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/text_color"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_marginEnd="25dp"
+        />
+
 
 </RelativeLayout>

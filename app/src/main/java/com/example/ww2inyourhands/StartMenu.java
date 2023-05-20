@@ -3,25 +3,15 @@ package com.example.ww2inyourhands;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
 
 public class StartMenu extends AppCompatActivity {
 
-    Button playBtn, hallOfFameBtn, connectAccount, accountBtn;
+    Button playBtn, hallOfFameBtn, accountBtn;
 
 
     @Override
@@ -30,31 +20,27 @@ public class StartMenu extends AppCompatActivity {
         setContentView(R.layout.activity_start_menu);
 
         playBtn = findViewById(R.id.play_button);
-        accountBtn = findViewById(R.id.account_button);
         hallOfFameBtn = findViewById(R.id.hall_of_fame_button);
-        connectAccount = findViewById(R.id.connect_account_button);
-
-        accountBtn.setVisibility(INVISIBLE);
+        accountBtn = findViewById(R.id.account_button);
 
 
-        connectAccount.setOnClickListener(v-> startActivity(new Intent(StartMenu.this, CreateAccountActivity.class)));
-        accountBtn.setOnClickListener(v-> startActivity(new Intent(StartMenu.this, AccountActivity.class)));
+        accountBtn.setOnClickListener(v-> accountButton(LoginActivity.loggedIn));
         playBtn.setOnClickListener(v-> startActivity(new Intent(StartMenu.this, StartNewOrContinueActivity.class)));
 
 
         }
 
-
-
-
-    @Override
-    protected void onResume() {
-        if (LoginActivity.loggedIn){
-            connectAccount.setVisibility(INVISIBLE);
-            accountBtn.setVisibility(VISIBLE);
+    private void accountButton(boolean loggedIn) {
+        if (loggedIn){
+            startActivity(new Intent(StartMenu.this, AccountActivity.class));
         }
-        super.onResume();
+        else{
+            startActivity(new Intent(StartMenu.this, LoginActivity.class));
+        }
     }
+
+
+
 
 
 }
