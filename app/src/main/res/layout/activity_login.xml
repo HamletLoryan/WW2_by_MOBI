@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CreateAccountActivity"
     android:background="@color/text_color">
 
@@ -57,32 +58,51 @@
         android:layout_marginHorizontal="32dp"
         android:id="@+id/form_layout"
         >
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:hint="@string/e_mail"
-            android:id="@+id/email_edit_text"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/rounded_corner"
-            android:padding="16dp"
-            android:layout_marginTop="12dp"
+            android:backgroundTint="@android:color/transparent"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            android:gravity="center"
+            app:hintEnabled="false"
+            android:paddingVertical="5dp"
+            >
 
-            android:importantForAutofill="no"
-            tools:ignore="VisualLintTextFieldSize" />
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner"
+                android:hint="@string/e_mail"
+                android:singleLine="true"
+                tools:ignore="VisualLintTextFieldSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:hint="@string/password"
-            android:id="@+id/password_edit_text"
-            android:inputType="textPassword"
-            android:background="@drawable/rounded_corner"
-            android:padding="16dp"
-            android:layout_marginTop="12dp"
+            android:backgroundTint="@android:color/transparent"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconMode="password_toggle"
+            android:gravity="center"
+            app:hintEnabled="false"
+            android:paddingVertical="5dp"
+            >
 
-            android:importantForAutofill="no"
-            tools:ignore="VisualLintTextFieldSize" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                tools:ignore="VisualLintTextFieldSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
 

@@ -5,9 +5,14 @@ import static android.view.View.VISIBLE;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,7 +36,19 @@ public class AccountActivity extends AppCompatActivity {
         logOutButton = findViewById(R.id.log_out_btn);
         progressBar = findViewById(R.id.progress_bar);
         emailTextView.setText(email);
-        logOutButton.setOnClickListener(v -> {
+        logOutButton.setOnClickListener(v -> showDialog(AccountActivity.this));
+    }
+    private void showDialog(Activity activity) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.log_out_dialog_otp);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Button dialogBtn_continue = dialog.findViewById(R.id.cancel_btn);
+        dialogBtn_continue.setOnClickListener(v -> dialog.dismiss());
+        Button dialogBtn_log_in = dialog.findViewById(R.id.log_out_btn);
+        dialogBtn_log_in.setOnClickListener(v -> {
             logOutButton.setVisibility(INVISIBLE);
             progressBar.setVisibility(VISIBLE);
             SharedPreferences sp1 =getSharedPreferences("Login", MODE_PRIVATE);
@@ -45,7 +62,9 @@ public class AccountActivity extends AppCompatActivity {
             LoginActivity.loggedIn = false;
             finish();
         });
+        dialog.show();
     }
+
 
 
 

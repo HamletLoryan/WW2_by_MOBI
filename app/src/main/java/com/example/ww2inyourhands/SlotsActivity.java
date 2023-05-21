@@ -8,6 +8,8 @@ import android.widget.Button;
 
 public class SlotsActivity extends AppCompatActivity {
 
+    // TODO: make the buttons text recognizable
+
     Button slotOneBtn, slotTwoBtn, slotThreeBtn, autoSaveBtn;
     public static boolean Slot1 = false;
     public static boolean Slot2 = false;
