@@ -1,7 +1,5 @@
 package com.example.ww2inyourhands;
 
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
 
 import androidx.appcompat.app.AppCompatActivity;
 

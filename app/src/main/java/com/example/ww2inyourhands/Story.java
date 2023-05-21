@@ -33,7 +33,7 @@ public class Story {
 
         gs.variantABtn.setVisibility(View.INVISIBLE);
         gs.variantBBtn.setVisibility(View.INVISIBLE);
-        gs.variantCBtn.setText(R.string.startPointBtnD);
+        gs.variantCBtn.setText(R.string.startPointBtnC);
         gs.variantDBtn.setText(R.string.startPointBtnD);
 
         nextPositionA = null;

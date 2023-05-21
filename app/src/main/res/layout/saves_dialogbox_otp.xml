@@ -11,13 +11,13 @@
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
         android:paddingHorizontal="5dp"
         android:paddingBottom="5dp"
-        android:layout_centerHorizontal="true"
-        android:text="Where do you want to save your progress?"
+        android:text="@string/where_do_you_want_to_save_your_progress"
         android:textColor="@color/text_color"
         android:textSize="20sp"
-        />
+        tools:ignore="TextSizeCheck" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,11 +35,10 @@
             android:layout_alignParentTop="true"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="2dp"
-            android:text="slot 1"
+            android:text="@string/slot_1"
             android:textColor="@color/text_color"
             android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/slot2"
@@ -49,11 +48,10 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
-            android:text="slot 2"
+            android:text="@string/slot_2"
             android:textColor="@color/text_color"
             android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/slot3"
@@ -63,11 +61,10 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
-            android:text="slot 3"
+            android:text="@string/slot_3"
             android:textColor="@color/text_color"
             android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

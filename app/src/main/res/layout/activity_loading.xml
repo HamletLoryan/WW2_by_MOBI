@@ -20,14 +20,15 @@
         android:textSize="50sp"
         android:textStyle="bold"
 
-        />
+        tools:ignore="HardcodedText" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="by MOBI"
         android:textColor="@color/text_color"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
 
 
 

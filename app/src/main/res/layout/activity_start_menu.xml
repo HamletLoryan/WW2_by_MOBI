@@ -13,7 +13,8 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/main_menu_background" />
+        android:src="@drawable/main_menu_background"
+        android:importantForAccessibility="no" />
 
     <Button
         android:id="@+id/play_button"
@@ -22,10 +23,11 @@
         android:layout_above="@+id/hall_of_fame_button"
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="10dp"
-        android:text="Play"
+        android:text="@string/play"
         android:textColor="@color/text_color"
         android:textSize="35sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="VisualLintButtonSize" />
 
     <Button
         android:id="@+id/hall_of_fame_button"
@@ -34,13 +36,14 @@
         android:layout_marginHorizontal="30dp"
         android:layout_above="@+id/account_button"
         android:layout_marginBottom="10dp"
-        android:text="hall of fame"
+        android:text="@string/hall_of_fame"
         android:textColor="@color/text_color"
         android:textSize="35sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="VisualLintButtonSize" />
 
     <Button
-        android:contentDescription="Manage account"
+        android:contentDescription="@string/manage_account"
         android:id="@+id/account_button"
         android:layout_width="75dp"
         android:layout_height="75dp"

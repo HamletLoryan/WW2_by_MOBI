@@ -14,10 +14,9 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/background"
         android:padding="10dp"
-        android:text="Hi. Here you can start a new game or continue your old one, if you have saves."
+        android:text="@string/hi_here_you_can_start_a_new_game_or_continue_your_old_one_if_you_have_saves"
         android:textColor="@color/text_color"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/continue_button"
@@ -26,11 +25,11 @@
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="50dp"
         android:layout_marginBottom="50dp"
-        android:text="Continue"
+        android:text="@string/continue_btn"
         android:textColor="@color/text_color"
         android:textSize="35sp"
         android:textStyle="bold"
-        tools:ignore="HardcodedText" />
+        tools:ignore="VisualLintButtonSize" />
 
     <Button
         android:id="@+id/new_game_button"
@@ -39,11 +38,11 @@
         android:layout_above="@+id/continue_button"
         android:layout_marginHorizontal="50dp"
         android:layout_marginBottom="10dp"
-        android:text="Start New"
+        android:text="@string/start_new"
         android:textColor="@color/text_color"
         android:textSize="35sp"
         android:textStyle="bold"
-        tools:ignore="HardcodedText" />
+        tools:ignore="VisualLintButtonSize" />
 
 
 
