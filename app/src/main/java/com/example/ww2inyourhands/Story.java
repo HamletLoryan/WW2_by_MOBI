@@ -17,7 +17,6 @@ public class Story {
             case "commander": commander(); break;
             case "authorSpeech1": authorSpeech1(); break;
             case "kitchen": kitchen(); break;
-            default: startPoint(); break;
 
         }
 
