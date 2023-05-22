@@ -117,5 +117,9 @@ public class SlotsActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public void onBackPressed(){
+
+    }
 
 }

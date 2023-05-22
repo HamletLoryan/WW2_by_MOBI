@@ -52,6 +52,10 @@ public class StartNewOrContinueActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+    @Override
+    public void onBackPressed(){
+
+    }
 
 
 }
