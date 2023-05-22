@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     public static boolean loggedIn ;
 
     EditText emailEditText, passwordEditText;
-    Button logInButton;
+    Button logInButton, backButton;
     ProgressBar progressBar;
     TextView createAccountBtnTextView;
 
@@ -37,9 +37,11 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.email_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
         logInButton = findViewById(R.id.log_in_button);
+        backButton = findViewById(R.id.back_btn);
         createAccountBtnTextView = findViewById(R.id.login_btn);
         firebaseAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progress_bar);
+        backButton.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, StartMenu.class)));
 
         loggedIn = false;
 
@@ -89,7 +91,6 @@ else{
 
     @Override
     public void onBackPressed(){
-        startActivity(new Intent(LoginActivity.this, StartMenu.class));
     }
 
 }

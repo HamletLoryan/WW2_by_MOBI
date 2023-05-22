@@ -21,7 +21,7 @@ import android.widget.Toast;
 public class AccountActivity extends AppCompatActivity {
 
     TextView emailTextView;
-    Button logOutButton;
+    Button logOutButton, backButton;
     ProgressBar progressBar;
 
 
@@ -36,7 +36,9 @@ public class AccountActivity extends AppCompatActivity {
         logOutButton = findViewById(R.id.log_out_btn);
         progressBar = findViewById(R.id.progress_bar);
         emailTextView.setText(email);
+        backButton = findViewById(R.id.back_btn);
         logOutButton.setOnClickListener(v -> showDialog(AccountActivity.this));
+        backButton.setOnClickListener(v -> startActivity(new Intent(AccountActivity.this, StartMenu.class)));
     }
     private void showDialog(Activity activity) {
 
@@ -65,8 +67,7 @@ public class AccountActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
-
-
-
+    @Override
+    public void onBackPressed(){
+    }
 }

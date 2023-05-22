@@ -12,7 +12,7 @@ import android.view.Window;
 import android.widget.Button;
 
 public class StartNewOrContinueActivity extends AppCompatActivity {
-    Button newGameBtn, continueBtn;
+    Button newGameBtn, continueBtn, backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,10 @@ public class StartNewOrContinueActivity extends AppCompatActivity {
 
         continueBtn = findViewById(R.id.continue_button);
         newGameBtn = findViewById(R.id.new_game_button);
+        backButton = findViewById(R.id.back_btn);
         newGameBtn.setOnClickListener(v-> startActivity(new Intent(StartNewOrContinueActivity.this, GameScene.class)));
         continueBtn.setOnClickListener(v-> startActivity(new Intent(StartNewOrContinueActivity.this, SlotsActivity.class)));
+        backButton.setOnClickListener(v -> startActivity(new Intent(StartNewOrContinueActivity.this, StartMenu.class)));
 
 
     }

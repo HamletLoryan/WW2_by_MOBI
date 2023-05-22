@@ -7,13 +7,23 @@
     android:orientation="vertical"
     tools:context=".SlotsActivity">
 
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/baseline_arrow_back_ios_new_24"
+        android:contentDescription="@string/go_back" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="90dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/background"
         android:padding="8dp"
@@ -22,6 +32,7 @@
         android:textSize="22sp"
         android:gravity = "center" />
     <Button
+        android:textAlignment="viewStart"
         android:id="@+id/autoSave"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -31,11 +42,12 @@
         android:layout_marginBottom="2dp"
         android:text="@string/auto_saved"
         android:textColor="@color/text_color"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="VisualLintButtonSize" />
 
     <Button
+        android:textAlignment="viewStart"
         android:id="@+id/slot1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -45,11 +57,12 @@
         android:layout_marginBottom="2dp"
         android:text="@string/slot_1"
         android:textColor="@color/text_color"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="VisualLintButtonSize" />
 
     <Button
+        android:textAlignment="viewStart"
         android:id="@+id/slot2"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -59,11 +72,13 @@
         android:layout_marginBottom="2dp"
         android:text="@string/slot_2"
         android:textColor="@color/text_color"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
+
         tools:ignore="VisualLintButtonSize" />
 
     <Button
+        android:textAlignment="viewStart"
         android:id="@+id/slot3"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -73,7 +88,9 @@
         android:layout_marginBottom="2dp"
         android:text="@string/slot_3"
         android:textColor="@color/text_color"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
+
         tools:ignore="VisualLintButtonSize" />
+
 </RelativeLayout>

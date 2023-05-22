@@ -14,9 +14,10 @@ public class Story {
 
     public void setPosition(String position){
         switch (position){
-            case "commander": commander(); break;
-            case "authorSpeech1": authorSpeech1(); break;
-            case "kitchen": kitchen(); break;
+            case "Commander": commander(); break;
+            case "Author Speech 1": authorSpeech1(); break;
+            case "Kitchen": kitchen(); break;
+            case "Start Point": startPoint(); break;
 
         }
 
@@ -37,10 +38,10 @@ public class Story {
 
         nextPositionA = null;
         nextPositionB = null;
-        nextPositionC = "commander";
-        nextPositionD = "kitchen";
+        nextPositionC = "Commander";
+        nextPositionD = "Kitchen";
 
-        currentPosition = "startPoint";
+        currentPosition = "Start Point";
 
 
     }
@@ -58,9 +59,9 @@ public class Story {
         nextPositionA = null;
         nextPositionB = null;
         nextPositionC = null;
-        nextPositionD = "authorSpeech1";
+        nextPositionD = "Author Speech 1";
 
-        currentPosition = "commander";
+        currentPosition = "Commander";
     }
     public void authorSpeech1(){
 
@@ -75,9 +76,9 @@ public class Story {
         nextPositionA = null;
         nextPositionB = null;
         nextPositionC = null;
-        nextPositionD = "barrack";
+        nextPositionD = "Barrack";
 
-        currentPosition = "authorSpeech1";
+        currentPosition = "Author Speech 1";
     }
     public void kitchen(){
 
@@ -92,8 +93,8 @@ public class Story {
         nextPositionA = null;
         nextPositionB = null;
         nextPositionC = null;
-        nextPositionD = "commander";
+        nextPositionD = "Commander";
 
-        currentPosition = "kitchen";
+        currentPosition = "Kitchen";
     }
 }

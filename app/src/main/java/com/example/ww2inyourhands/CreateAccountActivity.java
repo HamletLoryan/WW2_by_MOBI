@@ -20,7 +20,7 @@ import java.util.Objects;
 public class CreateAccountActivity extends AppCompatActivity {
 
     EditText emailEditText, passwordEditText, confirmPasswordEditText;
-    Button submitButton;
+    Button submitButton, backButton;
     ProgressBar progressBar;
     TextView loginBtnTextView;
 
@@ -36,9 +36,11 @@ public class CreateAccountActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password_edit_text);
         confirmPasswordEditText = findViewById(R.id.confirm_password_edit_text);
         submitButton = findViewById(R.id.create_account_button);
+        backButton = findViewById(R.id.back_btn);
         progressBar = findViewById(R.id.progress_bar);
         loginBtnTextView = findViewById(R.id.login_btn);
         firebaseAuth = FirebaseAuth.getInstance();
+        backButton.setOnClickListener(v -> startActivity(new Intent(CreateAccountActivity.this, StartMenu.class)));
 
 
         loginBtnTextView.setOnClickListener(v -> startActivity(new Intent(
@@ -202,7 +204,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
+
     }
 
 }
