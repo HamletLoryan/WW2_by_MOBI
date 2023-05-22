@@ -61,6 +61,7 @@ public class LoadingActivity extends AppCompatActivity {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public boolean isOnline() throws IOException, InterruptedException {
@@ -70,4 +71,5 @@ public class LoadingActivity extends AppCompatActivity {
         return (exitValue == 0);
 
     }
+
 }
