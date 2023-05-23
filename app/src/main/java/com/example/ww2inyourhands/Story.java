@@ -15,15 +15,20 @@ public class Story {
     public void setPosition(String position){
         switch (position){
             case "Commander": commander(); break;
-            case "Author Speech 1": authorSpeech1(); break;
-            case "Kitchen": kitchen(); break;
             case "Start Point": startPoint(); break;
+            case "The Mission starts": theMissionStarts(); break;
 
         }
 
     }
 
+private void showAllButtons(){
+    gs.variantABtn.setVisibility(View.VISIBLE);
+    gs.variantBBtn.setVisibility(View.VISIBLE);
+    gs.variantCBtn.setVisibility(View.VISIBLE);
+    gs.variantCBtn.setVisibility(View.VISIBLE);
 
+}
 
     public void startPoint(){
 
@@ -33,13 +38,13 @@ public class Story {
 
         gs.variantABtn.setVisibility(View.INVISIBLE);
         gs.variantBBtn.setVisibility(View.INVISIBLE);
-        gs.variantCBtn.setText(R.string.startPointBtnC);
+        gs.variantCBtn.setVisibility(View.INVISIBLE);
         gs.variantDBtn.setText(R.string.startPointBtnD);
 
         nextPositionA = null;
         nextPositionB = null;
-        nextPositionC = "Commander";
-        nextPositionD = "Kitchen";
+        nextPositionC = null;
+        nextPositionD = "Commander";
 
         currentPosition = "Start Point";
 
@@ -59,42 +64,31 @@ public class Story {
         nextPositionA = null;
         nextPositionB = null;
         nextPositionC = null;
-        nextPositionD = "Author Speech 1";
+        nextPositionD = "The Mission starts";
 
         currentPosition = "Commander";
     }
-    public void authorSpeech1(){
 
+    public void theMissionStarts(){
         gs.sceneImage.setImageResource(R.drawable.author_speech);
-        gs.sceneText.setText(R.string.authorSpeech1);
+        gs.sceneText.setText(R.string.theMissionStartsText);
 
-        gs.variantABtn.setVisibility(View.INVISIBLE);
-        gs.variantBBtn.setVisibility(View.INVISIBLE);
-        gs.variantCBtn.setVisibility(View.INVISIBLE);
-        gs.variantDBtn.setText(R.string.authorSpeech1BtnD);
+        showAllButtons();
 
-        nextPositionA = null;
-        nextPositionB = null;
-        nextPositionC = null;
-        nextPositionD = "Barrack";
+        gs.variantABtn.setText(R.string.theMissionStartsBtnA);
+        gs.variantBBtn.setText(R.string.theMissionStartsBtnB);
+        gs.variantCBtn.setText(R.string.theMissionStartsBtnC);
+        gs.variantDBtn.setText(R.string.theMissionStartsBtnD);
 
-        currentPosition = "Author Speech 1";
+        nextPositionA = "Stealth";
+        nextPositionB = "Vantage point";
+        nextPositionC = "Information";
+        nextPositionD = "Camp";
+
+        currentPosition = "The Mission starts";
     }
-    public void kitchen(){
 
-        gs.sceneImage.setImageResource(R.drawable.commander);
-        gs.sceneText.setText(R.string.kitchen);
 
-        gs.variantABtn.setVisibility(View.INVISIBLE);
-        gs.variantBBtn.setVisibility(View.INVISIBLE);
-        gs.variantCBtn.setVisibility(View.INVISIBLE);
-        gs.variantDBtn.setText(R.string.kitchenBtnD);
 
-        nextPositionA = null;
-        nextPositionB = null;
-        nextPositionC = null;
-        nextPositionD = "Commander";
 
-        currentPosition = "Kitchen";
-    }
 }

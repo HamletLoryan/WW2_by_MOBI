@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="startPointBtnC">Go to aircraft</string>
 
+    <string name="theMissionStartsBtnC" >Gather information from locals.</string>
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="startPoint">1941. You are a private soldier in USA army. You will get your mission objectives from Captain Miller. He is waiting for you near the aircraft.</string>
-    <string name="commander">Private. Your mission is to parachute down behind enemies front line,find the division Delta, and get them back home.  </string>
-    <string name="authorSpeech1">Now, you have your objective, you can prepare your inventory and then go to bar, may be for the last time.</string>
+    <string name="commander"> Your mission, code-named Black Valkyrie, is to gather vital intelligence on enemy operations and disrupt their plans.</string>
     <string name="kitchen">Commander: Hey, private! What are you doing? Come here .</string>
+    <string name="theMissionStartsText">You have been dropped behind enemy lines with minimal equipment and must rely on your skills and instincts to survive. The success of this mission could turn the tide of the war. Choose your next move wisely:</string>
 
 </resources>

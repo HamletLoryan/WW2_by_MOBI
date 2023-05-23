@@ -28,28 +28,32 @@
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="5dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/background"
         android:padding="8dp"
+        android:paddingStart="12dp"
         android:text="cc"
         android:textColor="@color/text_color"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        android:textSize="18sp"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <Button
         android:id="@+id/varA"
+        android:textAlignment="viewStart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="2dp"
         android:layout_weight="1"
         android:text="##"
+        android:padding="5dp"
+
         android:textColor="@color/text_color"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         tools:ignore="DuplicateSpeakableTextCheck,HardcodedText,VisualLintButtonSize" />
 
@@ -58,13 +62,17 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="2dp"
         android:text="##"
         android:textColor="@color/text_color"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:padding="5dp"
+
         android:textStyle="bold"
-        tools:ignore="HardcodedText,VisualLintButtonSize" />
+        tools:ignore="HardcodedText,VisualLintButtonSize"
+        android:textAlignment="viewStart"
+        />
 
 
 
@@ -73,23 +81,31 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="2dp"
         android:text="##"
         android:textColor="@color/text_color"
         android:textSize="20sp"
         android:textStyle="bold"
-        tools:ignore="HardcodedText,VisualLintButtonSize" />
+        android:padding="5dp"
+
+        tools:ignore="HardcodedText,VisualLintButtonSize"
+        android:textAlignment="viewStart"
+        />
 
     <Button
         android:id="@+id/varD"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginHorizontal="10dp"
         android:text="##"
+        android:padding="5dp"
         android:textColor="@color/text_color"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        tools:ignore="HardcodedText,VisualLintButtonSize" />
+        android:layout_marginBottom="5dp"
+        tools:ignore="HardcodedText,VisualLintButtonSize"
+        android:textAlignment="viewStart"
+        />
 </LinearLayout>
