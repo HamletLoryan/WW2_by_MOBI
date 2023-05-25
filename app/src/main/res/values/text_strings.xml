@@ -2,7 +2,10 @@
 <resources>
     <string name="startPoint">1941. You are a private soldier in USA army. You will get your mission objectives from Captain Miller. He is waiting for you near the aircraft.</string>
     <string name="commander"> Your mission, code-named Black Valkyrie, is to gather vital intelligence on enemy operations and disrupt their plans.</string>
-    <string name="kitchen">Commander: Hey, private! What are you doing? Come here .</string>
-    <string name="theMissionStartsText">You have been dropped behind enemy lines with minimal equipment and must rely on your skills and instincts to survive. The success of this mission could turn the tide of the war. Choose your next move wisely:</string>
+    <string name="stealth">You move stealthily through the forest, hoping to avoid detection by enemy patrols. After a while, you stumble upon an enemy encampment, which may contain valuable information. Choose your next move:</string>
+    <string name="theMissionStartsText">You and your group, called "Revenge 24" have been dropped behind enemy lines with minimal equipment and must rely on your skills and instincts to survive. The success of this mission could turn the tide of the war. Choose your next move wisely:</string>
+    <string name="vantagePoint">From your vantage point, you spot enemy soldiers approaching your previous location. Choose your next move:</string>
+    <string name="locals">You move to a nearby village to talk with locals about the area. You can see a few houses and a small market with activity in the middle as you get closer. Which method would you prefer?</string>
+    <string name="camp">Set up a makeshift camp to rest and plan your next move. Find a secluded spot in the forest away from prying eyes and contemplate your options for the next phase of the mission. Choose your next move.</string>
 
 </resources>

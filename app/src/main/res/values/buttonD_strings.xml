@@ -3,5 +3,9 @@
     <string name="startPointBtnD">Go to aircraft.</string>
     <string name="commanderBtnD">YES SIR!</string>
     <string name="theMissionStartsBtnD">Set up camp.</string>
+    <string name="stealthBtnD" >Retreat and find an alternative route.</string>
+    <string name="vantagePointBtnD">Report findings to headquarters.</string>
+    <string name="localsBtnD">Eavesdrop from a hidden spot.</string>
+    <string name="campBtnD">Reflect on training and prepare mentally.</string>
 
 </resources>

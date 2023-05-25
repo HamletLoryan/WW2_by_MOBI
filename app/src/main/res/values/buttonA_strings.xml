@@ -2,5 +2,9 @@
 <resources>
     <string name="startPointBtnA">1941. You are a private soldier in USA army. You will get your mission objectives from Captain Miller. He is waiting for you near the aircraft.</string>
     <string name="theMissionStartsBtnA" >Stealthily through the forest.</string>
+    <string name="stealthBtnA" >Observe the enemy camp.</string>
+    <string name="vantagePointBtnA">Observe them from hiding.</string>
+    <string name="localsBtnA">Blend in at the marketplace.</string>
+    <string name="campBtnA">Identify enemy targets using map and intel.</string>
 
 </resources>

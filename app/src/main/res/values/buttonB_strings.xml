@@ -2,5 +2,9 @@
 <resources>
     <string name="startPointBtnB">1941. You are a private soldier in USA army. You will get your mission objectives from Captain Miller. He is waiting for you near the aircraft.</string>
     <string name="theMissionStartsBtnB" >Scout from a vantage point.</string>
+    <string name="stealthBtnB">Infiltrate the camp.</string>
+    <string name="vantagePointBtnB">Intercept them.</string>
+    <string name="localsBtnB">Find a discreet spot to observe.</string>
+    <string name="campBtnB">Search for nearby supply caches.</string>
 
 </resources>

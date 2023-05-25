@@ -2,4 +2,8 @@
 <resources>
 
     <string name="theMissionStartsBtnC" >Gather information from locals.</string>
+    <string name="stealthBtnC">Circle around the camp.</string>
+    <string name="vantagePointBtnC">Gather more intel with binoculars.</string>
+    <string name="localsBtnC">Approach a villager.</string>
+    <string name="campBtnC">Set up camp defenses.</string>
 </resources>
