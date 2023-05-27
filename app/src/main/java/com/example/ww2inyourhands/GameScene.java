@@ -15,6 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.DocumentReference;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public class GameScene extends AppCompatActivity {
     Story story = new Story(this);
 
@@ -29,11 +35,11 @@ public class GameScene extends AppCompatActivity {
 
         sceneImage = findViewById(R.id.image);
         sceneText = findViewById(R.id.text);
-        variantABtn = (Button)findViewById(R.id.varA);
-        variantBBtn = (Button)findViewById(R.id.varB);
-        variantCBtn = (Button)findViewById(R.id.varC);
-        variantDBtn = (Button)findViewById(R.id.varD);
-        menuBtn = (Button)findViewById(R.id.menuBtn);
+        variantABtn = findViewById(R.id.varA);
+        variantBBtn = findViewById(R.id.varB);
+        variantCBtn = findViewById(R.id.varC);
+        variantDBtn = findViewById(R.id.varD);
+        menuBtn = findViewById(R.id.menuBtn);
 
 
         variantABtn.setTransformationMethod(null);
@@ -120,21 +126,30 @@ public class GameScene extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         SharedPreferences sp=getSharedPreferences("Saves", MODE_PRIVATE);
         SharedPreferences.Editor Ed=sp.edit();
-        Button dialogBtn_slot_1 = (Button) dialog.findViewById(R.id.slot1);
+        Button dialogBtn_slot_1 = dialog.findViewById(R.id.slot1);
         dialogBtn_slot_1.setOnClickListener(v -> {
+            Saves saves = new Saves();
+            saves.setSaveSlot1(story.currentPosition);
+            saveToDatabase(saves);
             Ed.putString("SaveSlot1", story.currentPosition );
             Ed.apply();
             Toast.makeText(GameScene.this, R.string.save_1_saved_successfully, Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
-        Button dialogBtn_slot_2 = (Button) dialog.findViewById(R.id.slot2);
+        Button dialogBtn_slot_2 = dialog.findViewById(R.id.slot2);
         dialogBtn_slot_2.setOnClickListener(v -> {
+            Saves saves = new Saves();
+            saves.setSaveSlot2(story.currentPosition);
+            saveToDatabase(saves);
             Ed.putString("SaveSlot2", story.currentPosition );
             Ed.apply();
             Toast.makeText(GameScene.this, R.string.save_2_saved_successfully, Toast.LENGTH_SHORT).show();
             dialog.dismiss();
-        });Button dialogBtn_slot_3 = (Button) dialog.findViewById(R.id.slot3);
+        });Button dialogBtn_slot_3 = dialog.findViewById(R.id.slot3);
         dialogBtn_slot_3.setOnClickListener(v -> {
+            Saves saves = new Saves();
+            saves.setSaveSlot3(story.currentPosition);
+            saveToDatabase(saves);
             Ed.putString("SaveSlot3", story.currentPosition );
             Ed.apply();
             Toast.makeText(GameScene.this, R.string.save_3_saved_successfully, Toast.LENGTH_SHORT).show();
@@ -144,19 +159,36 @@ public class GameScene extends AppCompatActivity {
     }
 
 
+    public void saveToDatabase(Saves saves){
+        DocumentReference documentReference;
+        documentReference = Utilities.getDocumentReference();
+        Map<String, Object> save = new HashMap<>();
+        save.put("SaveSlot1", saves.getSaveSlot1());
+        save.put("SaveSlot2", saves.getSaveSlot2());
+        save.put("SaveSlot3", saves.getSaveSlot3());
+
+        documentReference.update(save).addOnCompleteListener(task -> {
+            if(!task.isSuccessful()){
+                Toast.makeText(GameScene.this, "Not saved in database. " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+    }
+
+
     public void showMenuDialog(Activity activity){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.menu_dialogbox_otp);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        Button dialogBtn_continue = (Button) dialog.findViewById(R.id.continue_button);
+        Button dialogBtn_continue = dialog.findViewById(R.id.continue_button);
         dialogBtn_continue.setOnClickListener(v -> dialog.dismiss());
-        Button dialogBtn_save = (Button) dialog.findViewById(R.id.save_button);
+        Button dialogBtn_save = dialog.findViewById(R.id.save_button);
         dialogBtn_save.setOnClickListener(v -> {
             showSavesDialog(GameScene.this);
             dialog.dismiss();
-        });Button dialogBtn_quit = (Button) dialog.findViewById(R.id.quit_button);
+        });Button dialogBtn_quit = dialog.findViewById(R.id.quit_button);
         dialogBtn_quit.setOnClickListener(v -> {
             startActivity(new Intent(GameScene.this, StartMenu.class));
             dialog.dismiss();

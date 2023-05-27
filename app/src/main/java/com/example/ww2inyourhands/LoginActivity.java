@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static boolean loggedIn ;
+    public static boolean loggedIn;
 
     EditText emailEditText, passwordEditText;
     Button logInButton, backButton;
@@ -46,18 +46,18 @@ public class LoginActivity extends AppCompatActivity {
         loggedIn = false;
 
 
-
-    createAccountBtnTextView.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, CreateAccountActivity.class)));
+        createAccountBtnTextView.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, CreateAccountActivity.class)));
 
         logInButton.setOnClickListener(v -> {
             String email, password;
             email = String.valueOf(emailEditText.getText());
             password = String.valueOf(passwordEditText.getText());
 
-            if(TextUtils.isEmpty(email)){
+            if (TextUtils.isEmpty(email)) {
                 emailEditText.setError("Please enter your email.");
                 return;
-            }if(TextUtils.isEmpty(password)){
+            }
+            if (TextUtils.isEmpty(password)) {
                 passwordEditText.setError("Please enter your password.");
                 return;
             }
@@ -66,31 +66,32 @@ public class LoginActivity extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
 
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                if(task.isSuccessful()){
-                    if(Objects.requireNonNull(firebaseAuth.getCurrentUser()).isEmailVerified()) {
-                        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
-                        SharedPreferences.Editor Ed=sp.edit();
+                if (task.isSuccessful()) {
+                    if (Objects.requireNonNull(firebaseAuth.getCurrentUser()).isEmailVerified()) {
+                        SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
+                        SharedPreferences.Editor Ed = sp.edit();
                         Ed.putBoolean("IsLoggedIn", true);
-                        Ed.putString("Email",email );
-                        Ed.putString("Password",password);
+                        Ed.putString("Email", email);
+                        Ed.putString("Password", password);
                         Ed.apply();
-        loggedIn = true;
+                        loggedIn = true;
                         Toast.makeText(LoginActivity.this, R.string.logged_in_successfully, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, StartMenu.class));
-        finish();
-    }else{
-        Toast.makeText(LoginActivity.this, R.string.verify_your_email, Toast.LENGTH_SHORT).show();
-    }
-}
-else{
-    Toast.makeText(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-}
-});
+                        finish();
+                    } else {
+                        logInButton.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(LoginActivity.this, R.string.verify_your_email, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.ww2inyourhands;
 
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,8 +14,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class CreateAccountActivity extends AppCompatActivity {
@@ -64,6 +71,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                             if(task1.isSuccessful()){
                                 Toast.makeText(CreateAccountActivity.this,
                                         R.string.account_created_successfully, Toast.LENGTH_SHORT).show();
+                                Saves saves = new Saves();
+                                saves.setSaveSlot1("Empty");
+                                saves.setSaveSlot2("Empty");
+                                saves.setSaveSlot3("Empty");
+                                saveToDatabase(saves);
                                 startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
                                 finish();
                             }
@@ -81,6 +93,25 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+    }
+
+    void saveToDatabase(Saves saves){
+        DocumentReference documentReference;
+        documentReference = Utilities.getDocumentReference();
+        Map<String, Object> save = new HashMap<>();
+        save.put("SaveSlot1", saves.getSaveSlot1());
+        save.put("SaveSlot2", saves.getSaveSlot2());
+        save.put("SaveSlot3", saves.getSaveSlot3());
+
+        documentReference.set(save).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                Toast.makeText(CreateAccountActivity.this, "Save path created", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(CreateAccountActivity.this, "Smth. went wrong", Toast.LENGTH_SHORT).show();
             }
         });
 
