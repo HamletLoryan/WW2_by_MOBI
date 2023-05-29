@@ -37,6 +37,9 @@
     <string name="the_progress_you_ve_made_won_t_be_stored_online_since_you_re_currently_offline_if_you_have_internet_access_please_try_again_to_log_in_or_restart_the_program">The progress you\'ve made won\'t be stored online since you\'re currently offline. If you have internet access, please try again to log in, or restart the program.</string>
     <string name="ok">OK</string>
     <string name="close">close app</string>
+    <string name="online_saves">Seems like there are some saves backed up. Do you want to load them back?</string>
+    <string name="load">Load</string>
+    <string name="no">No</string>
 
     <item name="slot3Null" type="id" />
 </resources>

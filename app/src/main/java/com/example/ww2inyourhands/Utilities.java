@@ -18,4 +18,6 @@ public class Utilities {
         assert user != null;
         return FirebaseFirestore.getInstance().collection("Saves").document(Objects.requireNonNull(user.getEmail())).collection("user_saves").document("Save");
     }
+
+
 }
