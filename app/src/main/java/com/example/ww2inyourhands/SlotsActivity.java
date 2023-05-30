@@ -52,7 +52,7 @@ public class SlotsActivity extends AppCompatActivity {
             autoSaveBtn.setOnClickListener(v -> {});
         }
         else {
-            autoSaveBtn.setText("Auto save: " + slot);
+            autoSaveBtn.setText("Auto save: \n" + slot);
             autoSaveBtn.setOnClickListener(v -> {
                 AutoSave = true;
                 startActivity(new Intent(SlotsActivity.this, GameScene.class));
@@ -71,7 +71,7 @@ public class SlotsActivity extends AppCompatActivity {
             slotOneBtn.setOnClickListener(v -> {});
         }
         else {
-            slotOneBtn.setText("Slot 1: " + slot);
+            slotOneBtn.setText("Slot 1: \n" + slot);
             slotOneBtn.setOnClickListener(v -> {
                 Slot1 = true;
                 startActivity(new Intent(SlotsActivity.this, GameScene.class));
@@ -90,7 +90,7 @@ public class SlotsActivity extends AppCompatActivity {
             slotTwoBtn.setOnClickListener(v -> {});
         }
         else {
-            slotTwoBtn.setText("Slot 2: " + slot);
+            slotTwoBtn.setText("Slot 2: \n" + slot);
             slotTwoBtn.setOnClickListener(v -> {
                 Slot2 = true;
                 startActivity(new Intent(SlotsActivity.this, GameScene.class));
@@ -109,7 +109,7 @@ public class SlotsActivity extends AppCompatActivity {
             slotThreeBtn.setOnClickListener(v -> {});
         }
         else {
-            slotThreeBtn.setText("Slot 3: " + slot);
+            slotThreeBtn.setText("Slot 3: \n" + slot);
             slotThreeBtn.setOnClickListener(v -> {
                 Slot3 = true;
                 startActivity(new Intent(SlotsActivity.this, GameScene.class));

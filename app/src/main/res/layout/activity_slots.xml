@@ -30,7 +30,8 @@
         android:text="@string/chose_the_game_you_want_to_continue"
         android:textColor="@color/text_color"
         android:textSize="22sp"
-        android:gravity = "center" />
+        android:textStyle="bold"
+        android:textAlignment="viewStart" />
     <Button
         android:textAlignment="viewStart"
         android:id="@+id/autoSave"
