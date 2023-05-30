@@ -125,12 +125,13 @@ public class GameScene extends AppCompatActivity {
         dialog.setContentView(R.layout.saves_dialogbox_otp);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         SharedPreferences sp=getSharedPreferences("Saves", MODE_PRIVATE);
+        SharedPreferences sp1 =getSharedPreferences("Login", MODE_PRIVATE);
         SharedPreferences.Editor Ed=sp.edit();
         Button dialogBtn_slot_1 = dialog.findViewById(R.id.slot1);
         dialogBtn_slot_1.setOnClickListener(v -> {
             Saves saves = new Saves();
             saves.setSaveSlot1(story.currentPosition);
-            saveToDatabase(saves);
+            if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
             Ed.putString("SaveSlot1", story.currentPosition );
             Ed.apply();
             Toast.makeText(GameScene.this, R.string.save_1_saved_successfully, Toast.LENGTH_SHORT).show();
@@ -140,8 +141,7 @@ public class GameScene extends AppCompatActivity {
         dialogBtn_slot_2.setOnClickListener(v -> {
             Saves saves = new Saves();
             saves.setSaveSlot2(story.currentPosition);
-            saveToDatabase(saves);
-            Ed.putString("SaveSlot2", story.currentPosition );
+            if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);            Ed.putString("SaveSlot2", story.currentPosition );
             Ed.apply();
             Toast.makeText(GameScene.this, R.string.save_2_saved_successfully, Toast.LENGTH_SHORT).show();
             dialog.dismiss();
@@ -149,8 +149,7 @@ public class GameScene extends AppCompatActivity {
         dialogBtn_slot_3.setOnClickListener(v -> {
             Saves saves = new Saves();
             saves.setSaveSlot3(story.currentPosition);
-            saveToDatabase(saves);
-            Ed.putString("SaveSlot3", story.currentPosition );
+            if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);            Ed.putString("SaveSlot3", story.currentPosition );
             Ed.apply();
             Toast.makeText(GameScene.this, R.string.save_3_saved_successfully, Toast.LENGTH_SHORT).show();
             dialog.dismiss();

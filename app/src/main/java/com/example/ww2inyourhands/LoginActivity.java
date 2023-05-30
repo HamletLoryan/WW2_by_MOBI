@@ -82,30 +82,19 @@ public class LoginActivity extends AppCompatActivity {
                         Ed.putString("Email", email);
                         Ed.putString("Password", password);
                         Ed.apply();
-//                        DocumentReference dr = Utilities.getDocumentReference();
-//                        Saves saves = new Saves();
-//                        SharedPreferences sharedPreferences = getSharedPreferences("Saves", MODE_PRIVATE);
-//                        saves.setSaveSlot1(sharedPreferences.getString("SaveSlot1", null));
-//                        saves.setSaveSlot2(sharedPreferences.getString("SaveSlot2", null));
-//                        saves.setSaveSlot3(sharedPreferences.getString("SaveSlot3", null));
-//                        Map<String, Object> s = new HashMap<>();
-//                        s.put("SaveSlot1", saves.getSaveSlot1());
-//                        s.put("SaveSlot2", saves.getSaveSlot2());
-//                        s.put("SaveSlot3", saves.getSaveSlot3());
-//                        dr.update(s);
-//                        getSaves();
-                        Saves save = new Saves();
-                        Saves saves  = new Saves();
-                        showDialogForExistingOnlineSaves(LoginActivity.this,save, saves);
+
+                        getSaves();
+
                         loggedIn = true;
                         Toast.makeText(LoginActivity.this, R.string.logged_in_successfully, Toast.LENGTH_SHORT).show();
-                        finish();
                     } else {
                         logInButton.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, R.string.verify_your_email, Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    logInButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -124,19 +113,23 @@ public class LoginActivity extends AppCompatActivity {
         saves.setSaveSlot2(sharedPreferences.getString("SaveSlot2", null));
         saves.setSaveSlot3(sharedPreferences.getString("SaveSlot3", null));
         dr.get().addOnSuccessListener(documentSnapshot -> {
-            Saves save = documentSnapshot.toObject(Saves.class);
-            assert save != null;
-            if(!areSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3(), save.getSaveSlot1(), save.getSaveSlot2() , save.getSaveSlot3())){
-                if(areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(save.getSaveSlot1(), save.getSaveSlot2() , save.getSaveSlot3())){
-                    showDialogForExistingOnlineSaves(LoginActivity.this, save, saves);
-                } else if (!areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && areOnlineSavesEmpty(save.getSaveSlot1(), save.getSaveSlot2() , save.getSaveSlot3())) {
+            Saves dataBaseSave = documentSnapshot.toObject(Saves.class);
+            assert dataBaseSave != null;
+            if(!areSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3(), dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())){
+                if(areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())){
+                    showDialogForExistingOnlineSaves(LoginActivity.this, dataBaseSave, saves);
+                } else if (!areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())) {
                    Map<String, Object> s = new HashMap<>();
                    s.put("SaveSlot1", saves.getSaveSlot1());
                    s.put("SaveSlot2", saves.getSaveSlot2());
                    s.put("SaveSlot3", saves.getSaveSlot3());
-                   dr.update(s);
-                }else if (!areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(save.getSaveSlot1(), save.getSaveSlot2() , save.getSaveSlot3())){
-                    showDialogForExistingOnlineSaves(LoginActivity.this, save, saves);
+                    Toast.makeText(this, s.toString(), Toast.LENGTH_SHORT).show();
+                    dr.update(s);
+                    startActivity(new Intent(LoginActivity.this, StartMenu.class));
+                    finish();
+
+                }else if (!areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())){
+                    showDialogForExistingOnlineSaves(LoginActivity.this, dataBaseSave, saves);
                 }
             }
 
@@ -158,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
             Ed.putString("SaveSlot3", save.getSaveSlot3() );
             Ed.apply();
             startActivity(new Intent(LoginActivity.this, StartMenu.class));
+            finish();
             dialog.dismiss();
         });
         Button dialogBtn_save = dialog.findViewById(R.id.no_btn);
@@ -169,6 +163,7 @@ public class LoginActivity extends AppCompatActivity {
             s.put("SaveSlot3", saves.getSaveSlot3());
             dr.update(s);
             startActivity(new Intent(LoginActivity.this, StartMenu.class));
+            finish();
             dialog.dismiss();
         });
         dialog.show();
