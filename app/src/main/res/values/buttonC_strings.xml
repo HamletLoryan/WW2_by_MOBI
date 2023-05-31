@@ -6,4 +6,5 @@
     <string name="vantagePointBtnC">Gather more intel with binoculars.</string>
     <string name="localsBtnC">Approach a villager.</string>
     <string name="campBtnC">Set up camp defenses.</string>
+    <string name="infiltrate_the_enemy_camp">Infiltrate the enemy camp.</string>
 </resources>

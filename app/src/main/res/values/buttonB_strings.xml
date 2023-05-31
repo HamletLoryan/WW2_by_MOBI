@@ -6,5 +6,6 @@
     <string name="vantagePointBtnB">Intercept them.</string>
     <string name="localsBtnB">Find a discreet spot to observe.</string>
     <string name="campBtnB">Search for nearby supply caches.</string>
+    <string name="retreat_from_the_forest_and_try_to_find_another_way">Retreat from the forest and try to find another way.</string>
 
 </resources>

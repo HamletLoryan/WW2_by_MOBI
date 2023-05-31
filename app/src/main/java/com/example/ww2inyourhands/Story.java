@@ -1,4 +1,5 @@
 package com.example.ww2inyourhands;
+
 import android.view.View;
 
 public class Story {
@@ -21,6 +22,7 @@ public class Story {
             case "Vantage point": vantagePoint(); break;
             case "Locals": locals(); break;
             case "Camp": camp(); break;
+            case "Observation": observation(); break;
 
         }
 
@@ -151,10 +153,28 @@ private void showAllButtons(){
 
         nextPositionA = "Enemy targets";
         nextPositionB = "Supply";
-        nextPositionC = "Setting defend.";
+        nextPositionC = "Setting defend";
         nextPositionD = "Preparation";
 
         currentPosition = "Camp";
+    }
+
+
+    public void observation(){
+        gs.sceneImage.setImageResource(R.drawable.binoculars);
+        gs.sceneText.setText(R.string.during_the_observation_you_found_out_that_the_enemy_keeps_some_british_soldiers_as_captives_what_do_you_do);
+
+        gs.variantABtn.setText(R.string.try_to_circle_the_enemies_around);
+        gs.variantBBtn.setText(R.string.retreat_from_the_forest_and_try_to_find_another_way);
+        gs.variantCBtn.setText(R.string.infiltrate_the_enemy_camp);
+        gs.variantDBtn.setText(R.string.get_closer_and_get_more_information);
+
+        nextPositionA = "Circling around";
+        nextPositionB = "Retreat from forest";
+        nextPositionC = "Camp infiltration";
+        nextPositionD = "Closer to enemy";
+
+        currentPosition = "Observation";
     }
 
 
