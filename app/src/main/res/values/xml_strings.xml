@@ -40,6 +40,11 @@
     <string name="online_saves">Seems like there are some saves backed up. Do you want to load them back?</string>
     <string name="load">Load</string>
     <string name="no">No</string>
+    <string name="slot_is_not_empty">The slot you selected is not empty. Do you want to overwrite it?</string>
+    <string name="overwrite">Overwrite</string>
+    <string name="delete_all_saves">Delete all saves.</string>
+    <string name="yes">Yes</string>
+    <string name="are_you_sure_you_want_to_delete_all_saves">Are you sure you want to delete all saves?</string>
 
     <item name="slot3Null" type="id" />
 </resources>

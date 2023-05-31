@@ -1,29 +1,18 @@
 package com.example.ww2inyourhands;
 
 
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-
-
-
 
 import java.io.IOException;
-
-
 import java.util.Objects;
 
 public class LoadingActivity extends AppCompatActivity {
@@ -87,18 +76,15 @@ public class LoadingActivity extends AppCompatActivity {
     }
     public void getSaves(){
         DocumentReference dr = Utilities.getDocumentReference();
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Saves save = documentSnapshot.toObject(Saves.class);
-                assert save != null;
-                SharedPreferences sharedPreferences = getSharedPreferences("Saves", MODE_PRIVATE);
-                SharedPreferences.Editor Ed = sharedPreferences.edit();
-                Ed.putString("SaveSlot1", save.getSaveSlot1() );
-                Ed.putString("SaveSlot2", save.getSaveSlot2() );
-                Ed.putString("SaveSlot3", save.getSaveSlot3() );
-                Ed.apply();
-            }
+        dr.get().addOnSuccessListener(documentSnapshot -> {
+            Saves save = documentSnapshot.toObject(Saves.class);
+            assert save != null;
+            SharedPreferences sharedPreferences = getSharedPreferences("Saves", MODE_PRIVATE);
+            SharedPreferences.Editor Ed = sharedPreferences.edit();
+            if (!save.getSaveSlot1().equals("Empty"))Ed.putString("SaveSlot1", save.getSaveSlot1());
+            if (!save.getSaveSlot2().equals("Empty"))Ed.putString("SaveSlot2", save.getSaveSlot2());
+            if (!save.getSaveSlot3().equals("Empty"))Ed.putString("SaveSlot3", save.getSaveSlot3());
+            Ed.apply();
         });
     }
 

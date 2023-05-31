@@ -128,32 +128,62 @@ public class GameScene extends AppCompatActivity {
         SharedPreferences sp1 =getSharedPreferences("Login", MODE_PRIVATE);
         SharedPreferences.Editor Ed=sp.edit();
         Button dialogBtn_slot_1 = dialog.findViewById(R.id.slot1);
-        dialogBtn_slot_1.setOnClickListener(v -> {
-            Saves saves = new Saves();
-            saves.setSaveSlot1(story.currentPosition);
-            if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
-            Ed.putString("SaveSlot1", story.currentPosition );
-            Ed.apply();
-            Toast.makeText(GameScene.this, R.string.save_1_saved_successfully, Toast.LENGTH_SHORT).show();
+        String slot = sp.getString("SaveSlot1", null);
+        if (slot == null){
+            dialogBtn_slot_1.setBackgroundColor(Color.rgb(153, 153, 153));
+            dialogBtn_slot_1.setTextColor(Color.rgb(51, 51, 51));
+            dialogBtn_slot_1.setOnClickListener(view -> {
+                Saves saves = new Saves();
+                saves.setSaveSlot1(story.currentPosition);
+                if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
+                Ed.putString("SaveSlot1", story.currentPosition );
+                Ed.apply();
+                Toast.makeText(GameScene.this, R.string.save_1_saved_successfully, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            });
+        }
+        else {
+            dialogBtn_slot_1.setOnClickListener(view -> showSaveExistsDialog(GameScene.this, "SaveSlot1"));
             dialog.dismiss();
-        });
+        }
         Button dialogBtn_slot_2 = dialog.findViewById(R.id.slot2);
-        dialogBtn_slot_2.setOnClickListener(v -> {
-            Saves saves = new Saves();
-            saves.setSaveSlot2(story.currentPosition);
-            if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);            Ed.putString("SaveSlot2", story.currentPosition );
-            Ed.apply();
-            Toast.makeText(GameScene.this, R.string.save_2_saved_successfully, Toast.LENGTH_SHORT).show();
+        slot = sp.getString("SaveSlot2", null);
+        if (slot == null){
+            dialogBtn_slot_2.setBackgroundColor(Color.rgb(153, 153, 153));
+            dialogBtn_slot_2.setTextColor(Color.rgb(51, 51, 51));
+            dialogBtn_slot_2.setOnClickListener(view -> {
+                Saves saves = new Saves();
+                saves.setSaveSlot1(story.currentPosition);
+                if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
+                Ed.putString("SaveSlot2", story.currentPosition );
+                Ed.apply();
+                Toast.makeText(GameScene.this, R.string.save_2_saved_successfully, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            });
+        }
+        else {
+            dialogBtn_slot_2.setOnClickListener(view -> showSaveExistsDialog(GameScene.this, "SaveSlot2"));
             dialog.dismiss();
-        });Button dialogBtn_slot_3 = dialog.findViewById(R.id.slot3);
-        dialogBtn_slot_3.setOnClickListener(v -> {
-            Saves saves = new Saves();
-            saves.setSaveSlot3(story.currentPosition);
-            if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);            Ed.putString("SaveSlot3", story.currentPosition );
-            Ed.apply();
-            Toast.makeText(GameScene.this, R.string.save_3_saved_successfully, Toast.LENGTH_SHORT).show();
+        }
+        Button dialogBtn_slot_3 = dialog.findViewById(R.id.slot3);
+        slot = sp.getString("SaveSlot3", null);
+        if (slot == null){
+            dialogBtn_slot_3.setBackgroundColor(Color.rgb(153, 153, 153));
+            dialogBtn_slot_3.setTextColor(Color.rgb(51, 51, 51));
+            dialogBtn_slot_3.setOnClickListener(view -> {
+                Saves saves = new Saves();
+                saves.setSaveSlot1(story.currentPosition);
+                if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
+                Ed.putString("SaveSlot3", story.currentPosition );
+                Ed.apply();
+                Toast.makeText(GameScene.this, R.string.save_3_saved_successfully, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            });
+        }
+        else {
+            dialogBtn_slot_2.setOnClickListener(view -> showSaveExistsDialog(GameScene.this, "SaveSlot3"));
             dialog.dismiss();
-        });
+        }
         dialog.show();
     }
 
@@ -170,7 +200,6 @@ public class GameScene extends AppCompatActivity {
             if(!task.isSuccessful()){
                 Toast.makeText(GameScene.this, "Not saved in database. " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
             }
-
         });
     }
 
@@ -192,6 +221,29 @@ public class GameScene extends AppCompatActivity {
             startActivity(new Intent(GameScene.this, StartMenu.class));
             dialog.dismiss();
         });
+        dialog.show();
+    }
+
+    public void showSaveExistsDialog(Activity activity, String Slot){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.slot_is_not_empty_dialog_otp);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Button dialogBtn_save = dialog.findViewById(R.id.overwrite_btn);
+        dialogBtn_save.setOnClickListener(v -> {
+            Saves saves = new Saves();
+            saves.setSaveSlot1(story.currentPosition);
+            SharedPreferences sp1 =getSharedPreferences("Login", MODE_PRIVATE);
+            SharedPreferences sp=getSharedPreferences("Saves", MODE_PRIVATE);
+            SharedPreferences.Editor Ed=sp.edit();
+            if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
+            Ed.putString(Slot, story.currentPosition );
+            Ed.apply();
+            Toast.makeText(GameScene.this, "Saved successfully.", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });Button dialogBtn_quit = dialog.findViewById(R.id.cancel_btn);
+        dialogBtn_quit.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
     @Override

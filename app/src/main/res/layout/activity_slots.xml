@@ -94,4 +94,15 @@
 
         tools:ignore="VisualLintButtonSize" />
 
+    <Button
+        android:contentDescription="@string/delete_all_saves"
+        android:id="@+id/delete_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/baseline_delete_outline_24"/>
+
 </RelativeLayout>

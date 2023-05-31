@@ -3,17 +3,28 @@ package com.example.ww2inyourhands;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.firestore.DocumentReference;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class SlotsActivity extends AppCompatActivity {
 
-    // TODO: make the buttons text recognizable
 
-    Button slotOneBtn, slotTwoBtn, slotThreeBtn, autoSaveBtn, backButton;
+    Button slotOneBtn, slotTwoBtn, slotThreeBtn, autoSaveBtn, backButton, deleteAllBtn;
     public static boolean Slot1 = false;
     public static boolean Slot2 = false;
     public static boolean Slot3 = false;
@@ -31,14 +42,52 @@ public class SlotsActivity extends AppCompatActivity {
          slotThreeBtn = findViewById(R.id.slot3);
          autoSaveBtn = findViewById(R.id.autoSave);
         backButton = findViewById(R.id.back_btn);
+        deleteAllBtn = findViewById(R.id.delete_btn);
 
         backButton.setOnClickListener(v -> startActivity(new Intent(SlotsActivity.this, StartNewOrContinueActivity.class)));
+        deleteAllBtn.setOnClickListener(v -> showDeletingDialog(SlotsActivity.this));
 
 
         autoSaveButton();
         slot1Button();
         slot2Button();
         slot3Button();
+    }
+
+    private void showDeletingDialog(Activity activity) {
+        final Dialog dialog = new Dialog(activity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(true);
+            dialog.setContentView(R.layout.delete_all_dialog_otp);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            Button dialogBtn_delete = dialog.findViewById(R.id.delete_btn);
+            dialogBtn_delete.setOnClickListener(v -> {
+                SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
+                SharedPreferences.Editor Ed=sp.edit();
+                Ed.putString("SaveSlot3", null);
+                Ed.putString("SaveSlot2", null);
+                Ed.putString("SaveSlot1", null);
+                Ed.putString("AutoSave", null);
+                startActivity(new Intent(SlotsActivity.this, SlotsActivity.class));
+                Ed.apply();
+                DocumentReference documentReference;
+                documentReference = Utilities.getDocumentReference();
+                Map<String, Object> save = new HashMap<>();
+                save.put("SaveSlot1", "Empty");
+                save.put("SaveSlot2", "Empty");
+                save.put("SaveSlot3", "Empty");
+
+                documentReference.update(save).addOnCompleteListener(task -> {
+                    if(!task.isSuccessful()){
+                        Toast.makeText(SlotsActivity.this,  Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                    dialog.dismiss();
+            });
+            Button dialogBtn_cancel = dialog.findViewById(R.id.cancel_btn);
+            dialogBtn_cancel.setOnClickListener(v -> dialog.dismiss());
+            dialog.show();
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -117,6 +166,8 @@ public class SlotsActivity extends AppCompatActivity {
         }
 
     }
+
+
     @Override
     public void onBackPressed(){
 
