@@ -62,26 +62,31 @@ public class SlotsActivity extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             Button dialogBtn_delete = dialog.findViewById(R.id.delete_btn);
             dialogBtn_delete.setOnClickListener(v -> {
-                SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
-                SharedPreferences.Editor Ed=sp.edit();
-                Ed.putString("SaveSlot3", null);
-                Ed.putString("SaveSlot2", null);
-                Ed.putString("SaveSlot1", null);
-                Ed.putString("AutoSave", null);
-                startActivity(new Intent(SlotsActivity.this, SlotsActivity.class));
-                Ed.apply();
-                DocumentReference documentReference;
-                documentReference = Utilities.getDocumentReference();
-                Map<String, Object> save = new HashMap<>();
-                save.put("SaveSlot1", "Empty");
-                save.put("SaveSlot2", "Empty");
-                save.put("SaveSlot3", "Empty");
+                        SharedPreferences sp = this.getSharedPreferences("Saves", MODE_PRIVATE);
+                        SharedPreferences.Editor Ed = sp.edit();
+                        Ed.putString("SaveSlot3", null);
+                        Ed.putString("SaveSlot2", null);
+                        Ed.putString("SaveSlot1", null);
+                        Ed.putString("AutoSave", null);
+                        startActivity(new Intent(SlotsActivity.this, SlotsActivity.class));
+                        Ed.apply();
 
-                documentReference.update(save).addOnCompleteListener(task -> {
-                    if(!task.isSuccessful()){
-                        Toast.makeText(SlotsActivity.this,  Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                        SharedPreferences login = this.getSharedPreferences("Login", MODE_PRIVATE);
+                        boolean isLoggedIn = login.getBoolean("IsLoggedIn", false);
+
+                        if(isLoggedIn){DocumentReference documentReference;
+                        documentReference = Utilities.getDocumentReference();
+                        Map<String, Object> save = new HashMap<>();
+                        save.put("SaveSlot1", "Empty");
+                        save.put("SaveSlot2", "Empty");
+                        save.put("SaveSlot3", "Empty");
+
+                        documentReference.update(save).addOnCompleteListener(task -> {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(SlotsActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                });
                     dialog.dismiss();
             });
             Button dialogBtn_cancel = dialog.findViewById(R.id.cancel_btn);

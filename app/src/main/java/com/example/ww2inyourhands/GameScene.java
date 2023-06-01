@@ -128,12 +128,16 @@ public class GameScene extends AppCompatActivity {
         SharedPreferences sp1 =getSharedPreferences("Login", MODE_PRIVATE);
         SharedPreferences.Editor Ed=sp.edit();
         Button dialogBtn_slot_1 = dialog.findViewById(R.id.slot1);
-        String slot = sp.getString("SaveSlot1", null);
-        if (slot == null){
+        String slot1 = sp.getString("SaveSlot1", "Empty");
+        String slot2 = sp.getString("SaveSlot2", "Empty");
+        String slot3 = sp.getString("SaveSlot3", "Empty");
+        if (slot1.equals("Empty")){
             dialogBtn_slot_1.setBackgroundColor(Color.rgb(153, 153, 153));
             dialogBtn_slot_1.setTextColor(Color.rgb(51, 51, 51));
             dialogBtn_slot_1.setOnClickListener(view -> {
                 Saves saves = new Saves();
+                saves.setSaveSlot3(slot3);
+                saves.setSaveSlot2(slot2);
                 saves.setSaveSlot1(story.currentPosition);
                 if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
                 Ed.putString("SaveSlot1", story.currentPosition );
@@ -143,17 +147,20 @@ public class GameScene extends AppCompatActivity {
             });
         }
         else {
-            dialogBtn_slot_1.setOnClickListener(view -> showSaveExistsDialog(GameScene.this, "SaveSlot1"));
-            dialog.dismiss();
+            dialogBtn_slot_1.setOnClickListener(view -> {
+                showSaveExistsDialog(GameScene.this, "SaveSlot1");
+                dialog.dismiss();
+            });
         }
         Button dialogBtn_slot_2 = dialog.findViewById(R.id.slot2);
-        slot = sp.getString("SaveSlot2", null);
-        if (slot == null){
+        if (slot2.equals("Empty")){
             dialogBtn_slot_2.setBackgroundColor(Color.rgb(153, 153, 153));
             dialogBtn_slot_2.setTextColor(Color.rgb(51, 51, 51));
             dialogBtn_slot_2.setOnClickListener(view -> {
                 Saves saves = new Saves();
-                saves.setSaveSlot1(story.currentPosition);
+                saves.setSaveSlot1(slot1);
+                saves.setSaveSlot3(slot3);
+                saves.setSaveSlot2(story.currentPosition);
                 if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
                 Ed.putString("SaveSlot2", story.currentPosition );
                 Ed.apply();
@@ -162,17 +169,21 @@ public class GameScene extends AppCompatActivity {
             });
         }
         else {
-            dialogBtn_slot_2.setOnClickListener(view -> showSaveExistsDialog(GameScene.this, "SaveSlot2"));
-            dialog.dismiss();
+            dialogBtn_slot_2.setOnClickListener(view -> {
+                showSaveExistsDialog(GameScene.this, "SaveSlot2");
+                dialog.dismiss();
+            });
+
         }
         Button dialogBtn_slot_3 = dialog.findViewById(R.id.slot3);
-        slot = sp.getString("SaveSlot3", null);
-        if (slot == null){
+        if (slot3.equals("Empty")){
             dialogBtn_slot_3.setBackgroundColor(Color.rgb(153, 153, 153));
             dialogBtn_slot_3.setTextColor(Color.rgb(51, 51, 51));
             dialogBtn_slot_3.setOnClickListener(view -> {
                 Saves saves = new Saves();
-                saves.setSaveSlot1(story.currentPosition);
+                saves.setSaveSlot1(slot1);
+                saves.setSaveSlot2(slot2);
+                saves.setSaveSlot3(story.currentPosition);
                 if(sp1.getBoolean("IsLoggedIn", false)) saveToDatabase(saves);
                 Ed.putString("SaveSlot3", story.currentPosition );
                 Ed.apply();
@@ -181,8 +192,10 @@ public class GameScene extends AppCompatActivity {
             });
         }
         else {
-            dialogBtn_slot_2.setOnClickListener(view -> showSaveExistsDialog(GameScene.this, "SaveSlot3"));
-            dialog.dismiss();
+            dialogBtn_slot_3.setOnClickListener(view -> {
+                showSaveExistsDialog(GameScene.this, "SaveSlot3");
+                dialog.dismiss();
+            });
         }
         dialog.show();
     }
@@ -233,7 +246,15 @@ public class GameScene extends AppCompatActivity {
         Button dialogBtn_save = dialog.findViewById(R.id.overwrite_btn);
         dialogBtn_save.setOnClickListener(v -> {
             Saves saves = new Saves();
+            if(Objects.equals(Slot, "SaveSlot1")){
             saves.setSaveSlot1(story.currentPosition);
+            }
+            else if(Objects.equals(Slot, "SaveSlot2")){
+                saves.setSaveSlot2(story.currentPosition);
+            }
+            else if(Objects.equals(Slot, "SaveSlot3")){
+                saves.setSaveSlot3(story.currentPosition);
+            }
             SharedPreferences sp1 =getSharedPreferences("Login", MODE_PRIVATE);
             SharedPreferences sp=getSharedPreferences("Saves", MODE_PRIVATE);
             SharedPreferences.Editor Ed=sp.edit();
@@ -251,4 +272,7 @@ public class GameScene extends AppCompatActivity {
 
     }
 
+    public void mainMenu() {
+        startActivity(new Intent(GameScene.this, StartMenu.class));
+    }
 }

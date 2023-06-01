@@ -8,5 +8,6 @@
     <string name="localsBtnD">Eavesdrop from a hidden spot.</string>
     <string name="campBtnD">Reflect on training and prepare mentally.</string>
     <string name="get_closer_and_get_more_information">Get closer and get more information</string>
+    <string name="back_to_main_menu">Back to main menu.</string>
 
 </resources>

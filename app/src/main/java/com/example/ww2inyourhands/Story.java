@@ -1,5 +1,6 @@
 package com.example.ww2inyourhands;
 
+import android.content.Intent;
 import android.view.View;
 
 public class Story {
@@ -23,6 +24,7 @@ public class Story {
             case "Locals": locals(); break;
             case "Camp": camp(); break;
             case "Observation": observation(); break;
+            case "Camp infiltration": campInfiltration(); break;
 
         }
 
@@ -175,6 +177,26 @@ private void showAllButtons(){
         nextPositionD = "Closer to enemy";
 
         currentPosition = "Observation";
+    }
+    public void campInfiltration(){
+        gs.sceneImage.setImageResource(R.drawable.achievement);
+        gs.sceneText.setText(R.string.infiltration_text);
+
+        gs.variantABtn.setVisibility(View.INVISIBLE);
+        gs.variantBBtn.setVisibility(View.INVISIBLE);
+        gs.variantCBtn.setVisibility(View.INVISIBLE);
+        gs.variantDBtn.setText(R.string.back_to_main_menu);
+
+        nextPositionA = null;
+        nextPositionB = null;
+        nextPositionC = null;
+        nextPositionD = "Main menu";
+
+        currentPosition = "Camp infiltration";
+    }
+
+    public void mainMenu(){
+        gs.mainMenu();
     }
 
 

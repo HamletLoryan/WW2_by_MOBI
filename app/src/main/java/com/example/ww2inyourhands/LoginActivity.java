@@ -115,21 +115,33 @@ public class LoginActivity extends AppCompatActivity {
         dr.get().addOnSuccessListener(documentSnapshot -> {
             Saves dataBaseSave = documentSnapshot.toObject(Saves.class);
             assert dataBaseSave != null;
-            if(!areSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3(), dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())){
+
                 if(areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())){
                     showDialogForExistingOnlineSaves(LoginActivity.this, dataBaseSave, saves);
-                } else if (!areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())) {
-                   Map<String, Object> s = new HashMap<>();
-                   s.put("SaveSlot1", sharedPreferences.getString("SaveSlot1", null));
-                   s.put("SaveSlot2", sharedPreferences.getString("SaveSlot2", null));
-                   s.put("SaveSlot3", sharedPreferences.getString("SaveSlot1", null));
+
+                }
+                else if(areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())  && !areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3())) {
+                    Map<String, Object> s = new HashMap<>();
+                   s.put("SaveSlot1", sharedPreferences.getString("SaveSlot1", "Empty"));
+                   s.put("SaveSlot2", sharedPreferences.getString("SaveSlot2", "Empty"));
+                   s.put("SaveSlot3", sharedPreferences.getString("SaveSlot3", "Empty"));
+                    dr.update(s);
+                    startActivity(new Intent(LoginActivity.this, StartMenu.class));
+                    finish();}
+                else if (!areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())){
+                    showDialogForExistingOnlineSaves(LoginActivity.this, dataBaseSave, saves);
+
+                }
+                else{
+                    Map<String, Object> s = new HashMap<>();
+                    s.put("SaveSlot1", dataBaseSave.getSaveSlot1());
+                    s.put("SaveSlot2", dataBaseSave.getSaveSlot2());
+                    s.put("SaveSlot3", dataBaseSave.getSaveSlot3());
                     dr.update(s);
                     startActivity(new Intent(LoginActivity.this, StartMenu.class));
                     finish();
-                }else if (!areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2() , dataBaseSave.getSaveSlot3())){
-                    showDialogForExistingOnlineSaves(LoginActivity.this, dataBaseSave, saves);
                 }
-            }
+
 
         });
     }
@@ -167,9 +179,6 @@ public class LoginActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public boolean areSavesEmpty(String s1, String s2, String s3, String dbs1, String dbs2, String dbs3){
-        return (s1 == null && s2 == null && s3 == null && dbs1.equals("Empty") && dbs2.equals("Empty") && dbs3.equals("Empty"));
-    }
     public boolean areLocalSavesEmpty(String s1, String s2, String s3){
         return (s1 == null && s2 == null && s3 == null);
     }
