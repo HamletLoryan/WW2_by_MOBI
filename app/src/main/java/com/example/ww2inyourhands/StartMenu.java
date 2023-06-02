@@ -2,7 +2,10 @@ package com.example.ww2inyourhands;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -26,9 +29,13 @@ public class StartMenu extends AppCompatActivity {
 
         accountBtn.setOnClickListener(v -> accountButton(LoginActivity.loggedIn));
         playBtn.setOnClickListener(v -> startActivity(new Intent(StartMenu.this, StartNewOrContinueActivity.class)));
+        hallOfFameBtn.setOnClickListener(v -> startActivity(new Intent(StartMenu.this, HallOfFame.class)));
+
 
 
     }
+
+
 
     private void accountButton(boolean loggedIn) {
         if (loggedIn) {

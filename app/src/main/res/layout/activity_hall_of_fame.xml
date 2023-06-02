@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:background="@color/text_color"
+    tools:context=".HallOfFame"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/baseline_arrow_back_ios_new_24"
+        android:contentDescription="@string/go_back" />
+
+    <!--suppress AndroidDomInspection -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/endings_grid"
+        android:layout_toEndOf="@id/back_btn"
+        android:text="@string/hall_of_fame"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="40sp"
+        android:gravity="end|bottom"
+        android:textColor="@color/my_color"
+        android:paddingHorizontal="10dp"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/back_btn"
+        android:columnCount="2"
+        android:rowCount="5"
+        android:id="@+id/endings_grid">
+
+        <ImageButton
+            android:id="@+id/mine_ending"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mine_explosion" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/background"
+            android:scaleType="fitCenter"
+            android:src="@drawable/achievement" />
+
+
+    </GridLayout>
+</RelativeLayout>

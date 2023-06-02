@@ -7,5 +7,6 @@
     <string name="localsBtnA">Blend in at the marketplace.</string>
     <string name="campBtnA">Identify enemy targets using map and intel.</string>
     <string name="try_to_circle_the_enemies_around">Try to circle the enemies around.</string>
+    <string name="get_back_home">Get back home.</string>
 
 </resources>

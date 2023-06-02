@@ -1,9 +1,10 @@
 package com.example.ww2inyourhands;
 
-import android.content.Intent;
+
 import android.view.View;
 
 public class Story {
+
 
     GameScene gs;
 
@@ -23,8 +24,11 @@ public class Story {
             case "Vantage point": vantagePoint(); break;
             case "Locals": locals(); break;
             case "Camp": camp(); break;
+            case "Hero": hero(); break;
+            case "Mine": mine(); break;
             case "Observation": observation(); break;
             case "Camp infiltration": campInfiltration(); break;
+            case "Circling around": circlingAround(); break;
 
         }
 
@@ -108,7 +112,7 @@ private void showAllButtons(){
         nextPositionA = "Observation";
         nextPositionB = "Camp infiltration";
         nextPositionC = "Circling around";
-        nextPositionD = "Retreat from forest";
+        nextPositionD = "Mine";
 
         currentPosition = "Stealth";
     }
@@ -186,18 +190,59 @@ private void showAllButtons(){
         gs.variantBBtn.setVisibility(View.INVISIBLE);
         gs.variantCBtn.setVisibility(View.INVISIBLE);
         gs.variantDBtn.setText(R.string.back_to_main_menu);
-
-        nextPositionA = null;
-        nextPositionB = null;
-        nextPositionC = null;
-        nextPositionD = "Main menu";
+        gs.menuBtn.setVisibility(View.INVISIBLE);
+        gs.variantDBtn.setOnClickListener(v -> gs.mainMenu());
 
         currentPosition = "Camp infiltration";
     }
+    public void circlingAround(){
+        gs.sceneImage.setImageResource(R.drawable.annexation);
+        gs.sceneText.setText(R.string.circling_around_text);
 
-    public void mainMenu(){
-        gs.mainMenu();
+        gs.variantABtn.setText(R.string.get_back_home);
+        gs.variantBBtn.setText(R.string.give_a_hand_of_help_to_british);
+        gs.variantCBtn.setText(R.string.go_further_and_try_to_find_more_information_about_enemies);
+        gs.variantDBtn.setText(R.string.find_something_to_eat);
+
+        nextPositionA = "Hero";
+        nextPositionB = "Mine";
+        nextPositionC = "Mine";
+        nextPositionD = "Mine";
+
+        currentPosition = "Circling around";
     }
+
+    public void mine(){
+        gs.sceneImage.setImageResource(R.drawable.mine_explosion);
+        gs.sceneText.setText(R.string.mine_text);
+
+        gs.variantABtn.setVisibility(View.INVISIBLE);
+        gs.variantBBtn.setVisibility(View.INVISIBLE);
+        gs.variantCBtn.setVisibility(View.INVISIBLE);
+        gs.variantDBtn.setText(R.string.back_to_main_menu);
+        gs.menuBtn.setVisibility(View.INVISIBLE);
+        gs.variantDBtn.setOnClickListener(v -> gs.mainMenu());
+
+        HallOfFame.isMineAchieved = true;
+
+        gs.saveEndings();
+
+        currentPosition = "Mine";
+    }
+    public void hero(){
+        gs.sceneImage.setImageResource(R.drawable.achievement);
+        gs.sceneText.setText(R.string.hero);
+
+        gs.variantABtn.setVisibility(View.INVISIBLE);
+        gs.variantBBtn.setVisibility(View.INVISIBLE);
+        gs.variantCBtn.setVisibility(View.INVISIBLE);
+        gs.menuBtn.setVisibility(View.INVISIBLE);
+        gs.variantDBtn.setText(R.string.back_to_main_menu);
+        gs.variantDBtn.setOnClickListener(v -> gs.mainMenu());
+
+        currentPosition = "Hero";
+    }
+
 
 
 

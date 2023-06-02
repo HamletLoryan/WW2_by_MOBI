@@ -76,6 +76,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 saves.setSaveSlot2("Empty");
                                 saves.setSaveSlot3("Empty");
                                 saveToDatabase(saves);
+                                DocumentReference DocRef = Utilities.getDocumentReferenceForEndings();
+                                Map<String, Object> map = new HashMap<>();
+                                DocRef.set(map);
                                 startActivity(new Intent(CreateAccountActivity.this, StartMenu.class));
                                 finish();
                             }
@@ -111,7 +114,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 Toast.makeText(CreateAccountActivity.this, "Save path created", Toast.LENGTH_SHORT).show();
             }
             else{
-                Toast.makeText(CreateAccountActivity.this, "Smth. went wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateAccountActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

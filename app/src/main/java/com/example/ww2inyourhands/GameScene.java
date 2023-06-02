@@ -275,4 +275,18 @@ public class GameScene extends AppCompatActivity {
     public void mainMenu() {
         startActivity(new Intent(GameScene.this, StartMenu.class));
     }
+
+    public void saveEndings() {
+        SharedPreferences sp=getSharedPreferences("Endings", MODE_PRIVATE);
+        SharedPreferences sp1=getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences.Editor Ed=sp.edit();
+        Ed.putBoolean("Mine", HallOfFame.isMineAchieved);
+        Ed.apply();
+        if(sp1.getBoolean("IsLoggedIn", false)){
+        Map<String, Object> Endings = new HashMap<>();
+        Endings.put("Mine", HallOfFame.isMineAchieved);
+        DocumentReference DocRef = Utilities.getDocumentReferenceForEndings();
+        DocRef.update(Endings);
+        }
+    }
 }

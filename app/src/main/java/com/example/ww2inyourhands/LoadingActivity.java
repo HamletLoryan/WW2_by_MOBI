@@ -57,13 +57,14 @@ public class LoadingActivity extends AppCompatActivity {
             }else{
                 Toast.makeText(LoadingActivity.this, R.string.you_are_offline_now, Toast.LENGTH_LONG).show();
                 new Handler().postDelayed(() -> startActivity(new Intent(LoadingActivity
-                        .this, StartMenu.class)), 1000
+                        .this, StartMenu.class)), 1000);
 
-                );
             }
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+
 
     }
 

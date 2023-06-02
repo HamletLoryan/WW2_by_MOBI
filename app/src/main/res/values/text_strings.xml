@@ -8,6 +8,9 @@
     <string name="locals">You move to a nearby village to talk with locals about the area. You can see a few houses and a small market with activity in the middle as you get closer. Which method would you prefer?</string>
     <string name="camp">You set up a makeshift camp to rest and plan your next move. Find a secluded spot in the forest away from prying eyes and contemplate your options for the next phase of the mission. Choose your next move.</string>
     <string name="during_the_observation_you_found_out_that_the_enemy_keeps_some_british_soldiers_as_captives_what_do_you_do">During the observation, you found out that the enemy keeps some British soldiers as captives. What do you do:</string>
-    <string name="infiltration_text">You started the infiltration, but the enemy was more powerful. You were injured badly and died in pain. But there was a bright point: the British soldiers could escape. They delivered the information they gained to their base. It helped to plan the Omaha Beach fight. Also, they told them about you, and you got the USA Medal of Honor posthumously.</string>
+    <string name="infiltration_text">You started the infiltration, but the enemy was more powerful. You were injured badly and died in pain. But there was a bright point: the British soldiers could escape. They delivered the information they gained to their base. It helped to plan the Omaha Beach fight. Also, they told about you, and you got the USA Medal of Honor posthumously.</string>
+    <string name="circling_around_text">Due to your sudden attack, the German soldiers surrendered. Now you have the information you needed, but the British guy tells you that their base is in trouble and wants you to help them.</string>
+    <string name="mine_text">"There were no signs of trouble, but suddenly, boom! A mine appeared under your foot. You died, and no one knows what happened later. "</string>
+    <string name="hero">You came home. And because you served with honor, you and your group were given a medal as WW2 heroes. The information you gained helped in planning the invasion of France.</string>
 
 </resources>

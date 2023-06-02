@@ -18,6 +18,12 @@ public class Utilities {
         assert user != null;
         return FirebaseFirestore.getInstance().collection("Saves").document(Objects.requireNonNull(user.getEmail())).collection("user_saves").document("Save");
     }
+    @NonNull
+    static DocumentReference getDocumentReferenceForEndings(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        return FirebaseFirestore.getInstance().collection("Endings").document(Objects.requireNonNull(user.getEmail())).collection("user_endings").document("Endings");
+    }
 
 
 }
