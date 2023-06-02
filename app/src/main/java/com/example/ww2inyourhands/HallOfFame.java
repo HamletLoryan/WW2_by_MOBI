@@ -3,12 +3,19 @@ package com.example.ww2inyourhands;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HallOfFame extends AppCompatActivity {
@@ -37,14 +44,34 @@ public class HallOfFame extends AppCompatActivity {
     private void updateEndings() {
         if(HallOfFame.isMineAchieved){
             MineEnding.setImageResource(R.drawable.mine_explosion);
-            MineEnding.setOnClickListener(v -> Toast.makeText(this, "Mine is achieved", Toast.LENGTH_SHORT).show());
+            MineEnding.setOnClickListener(v -> {
+                showEndingDialog(HallOfFame.this, R.drawable.mine_explosion, R.drawable.background, R.string.mine_ending_text);
+            });
             MineEnding.setBackgroundResource(R.drawable.background);
         }
         else{
             MineEnding.setImageResource(R.drawable.padlock);
-            MineEnding.setOnClickListener(v -> Toast.makeText(this, "Mine is not achieved", Toast.LENGTH_SHORT).show());
+            MineEnding.setOnClickListener(v -> {
+                showEndingDialog(HallOfFame.this, R.drawable.padlock, R.drawable.background3, R.string.this_ending_is_not_achieved_yet);
+            });
             MineEnding.setBackgroundResource(R.drawable.background3);
         }
+    }
+
+    public void showEndingDialog(Activity activity, int imageRes, int backgroundRes, int textRes){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.ending_dialog_otp);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        ImageView imageView = dialog.findViewById(R.id.dialog_image);
+        TextView textView = dialog.findViewById(R.id.dialog_text);
+        Button backBtn = dialog.findViewById(R.id.back_btn);
+        imageView.setImageResource(imageRes);
+        imageView.setBackgroundResource(backgroundRes);
+        textView.setText(textRes);
+        backBtn.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
     }
 
     @Override
