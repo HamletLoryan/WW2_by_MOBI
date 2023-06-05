@@ -281,10 +281,20 @@ public class GameScene extends AppCompatActivity {
         SharedPreferences sp1=getSharedPreferences("Login", MODE_PRIVATE);
         SharedPreferences.Editor Ed=sp.edit();
         Ed.putBoolean("Mine", HallOfFame.isMineAchieved);
+        Ed.putBoolean("Hero", HallOfFame.isHeroAchieved);
+        Ed.putBoolean("Camp infiltration", HallOfFame.isCampInfiltrationAchieved);
+        Ed.putBoolean("Treasure", HallOfFame.isTreasureAchieved);
+        Ed.putBoolean("Interception", HallOfFame.isInterceptionAchieved);
+        Ed.putBoolean("Coming soon", HallOfFame.isComingSoonAchieved);
         Ed.apply();
         if(sp1.getBoolean("IsLoggedIn", false)){
         Map<String, Object> Endings = new HashMap<>();
         Endings.put("Mine", HallOfFame.isMineAchieved);
+        Endings.put("Hero", HallOfFame.isHeroAchieved);
+        Endings.put("Camp infiltration", HallOfFame.isCampInfiltrationAchieved);
+        Endings.put("Treasure", HallOfFame.isTreasureAchieved);
+        Endings.put("Interception", HallOfFame.isInterceptionAchieved);
+        Endings.put("Coming soon", HallOfFame.isComingSoonAchieved);
         DocumentReference DocRef = Utilities.getDocumentReferenceForEndings();
         DocRef.update(Endings);
         }

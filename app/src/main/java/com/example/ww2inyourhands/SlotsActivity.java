@@ -47,6 +47,8 @@ public class SlotsActivity extends AppCompatActivity {
         backButton.setOnClickListener(v -> startActivity(new Intent(SlotsActivity.this, StartNewOrContinueActivity.class)));
         deleteAllBtn.setOnClickListener(v -> showDeletingDialog(SlotsActivity.this));
 
+        getSaves();
+
 
         autoSaveButton();
         slot1Button();
@@ -174,8 +176,84 @@ public class SlotsActivity extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed(){}
 
+    public void getSaves() {
+        DocumentReference dr = Utilities.getDocumentReference();
+        Saves saves = new Saves();
+        SharedPreferences sharedPreferences = getSharedPreferences("Saves", MODE_PRIVATE);
+        saves.setSaveSlot1(sharedPreferences.getString("SaveSlot1", null));
+        saves.setSaveSlot2(sharedPreferences.getString("SaveSlot2", null));
+        saves.setSaveSlot3(sharedPreferences.getString("SaveSlot3", null));
+        dr.get().addOnSuccessListener(documentSnapshot -> {
+            Saves dataBaseSave = documentSnapshot.toObject(Saves.class);
+            assert dataBaseSave != null;
+
+            if (areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2(), dataBaseSave.getSaveSlot3())) {
+                showDialogForExistingOnlineSaves(SlotsActivity.this, dataBaseSave, saves);
+
+            } else if (areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2(), dataBaseSave.getSaveSlot3()) && !areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3())) {
+                Map<String, Object> s = new HashMap<>();
+                s.put("SaveSlot1", sharedPreferences.getString("SaveSlot1", "Empty"));
+                s.put("SaveSlot2", sharedPreferences.getString("SaveSlot2", "Empty"));
+                s.put("SaveSlot3", sharedPreferences.getString("SaveSlot3", "Empty"));
+                dr.update(s);
+                finish();
+            } else if (!areLocalSavesEmpty(saves.getSaveSlot1(), saves.getSaveSlot2(), saves.getSaveSlot3()) && !areOnlineSavesEmpty(dataBaseSave.getSaveSlot1(), dataBaseSave.getSaveSlot2(), dataBaseSave.getSaveSlot3())) {
+                showDialogForExistingOnlineSaves(SlotsActivity.this, dataBaseSave, saves);
+
+            } else {
+                Map<String, Object> s = new HashMap<>();
+                s.put("SaveSlot1", dataBaseSave.getSaveSlot1());
+                s.put("SaveSlot2", dataBaseSave.getSaveSlot2());
+                s.put("SaveSlot3", dataBaseSave.getSaveSlot3());
+                dr.update(s);
+                finish();
+            }
+
+
+        });
+    }
+
+
+
+    public void showDialogForExistingOnlineSaves(Activity activity, Saves save, Saves saves) {
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.online_saves_exist_dialog_otp);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Button dialogBtn_load = dialog.findViewById(R.id.load_btn);
+        dialogBtn_load.setOnClickListener(v -> {
+            SharedPreferences sharedPreferences = getSharedPreferences("Saves", MODE_PRIVATE);
+            SharedPreferences.Editor Ed = sharedPreferences.edit();
+            Ed.putString("SaveSlot1", save.getSaveSlot1());
+            Ed.putString("SaveSlot2", save.getSaveSlot2());
+            Ed.putString("SaveSlot3", save.getSaveSlot3());
+            Ed.apply();
+            finish();
+            dialog.dismiss();
+        });
+        Button dialogBtn_no = dialog.findViewById(R.id.no_btn);
+        dialogBtn_no.setOnClickListener(v -> {
+            DocumentReference dr = Utilities.getDocumentReference();
+            Map<String, Object> s = new HashMap<>();
+            s.put("SaveSlot1", saves.getSaveSlot1());
+            s.put("SaveSlot2", saves.getSaveSlot2());
+            s.put("SaveSlot3", saves.getSaveSlot3());
+            dr.update(s);
+            finish();
+            dialog.dismiss();
+        });
+        dialog.show();
+    }
+
+    public boolean areLocalSavesEmpty(String s1, String s2, String s3) {
+        return (s1 == null && s2 == null && s3 == null);
+    }
+
+    public boolean areOnlineSavesEmpty(String dbs1, String dbs2, String dbs3) {
+        return (dbs1.equals("Empty") && dbs2.equals("Empty") && dbs3.equals("Empty"));
     }
 
 }

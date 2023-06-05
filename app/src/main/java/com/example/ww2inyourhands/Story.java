@@ -25,7 +25,10 @@ public class Story {
             case "Locals": locals(); break;
             case "Camp": camp(); break;
             case "Hero": hero(); break;
+            case "Treasure": treasure(); break;
+            case "Interception": interception();break;
             case "Mine": mine(); break;
+            case "Coming soon": comingSoon(); break;
             case "Observation": observation(); break;
             case "Camp infiltration": campInfiltration(); break;
             case "Circling around": circlingAround(); break;
@@ -125,10 +128,10 @@ private void showAllButtons(){
         gs.variantCBtn.setText(R.string.vantagePointBtnC);
         gs.variantDBtn.setText(R.string.vantagePointBtnD);
 
-        nextPositionA = "Observe from hiding";
+        nextPositionA = "Treasure";
         nextPositionB = "Interception";
-        nextPositionC = "Binoculars";
-        nextPositionD = "Report";
+        nextPositionC = "Observation";
+        nextPositionD = "Mine";
 
         currentPosition = "Vantage point";
     }
@@ -141,10 +144,10 @@ private void showAllButtons(){
         gs.variantCBtn.setText(R.string.localsBtnC);
         gs.variantDBtn.setText(R.string.localsBtnD);
 
-        nextPositionA = "Marketplace";
-        nextPositionB = "Observation point";
-        nextPositionC = "Villager";
-        nextPositionD = "Eavesdrop";
+        nextPositionA = "Coming soon";
+        nextPositionB = "Coming soon";
+        nextPositionC = "Coming soon";
+        nextPositionD = "Coming soon";
 
         currentPosition = "Locals";
     }
@@ -157,10 +160,10 @@ private void showAllButtons(){
         gs.variantCBtn.setText(R.string.campBtnC);
         gs.variantDBtn.setText(R.string.campBtnD);
 
-        nextPositionA = "Enemy targets";
-        nextPositionB = "Supply";
-        nextPositionC = "Setting defend";
-        nextPositionD = "Preparation";
+        nextPositionA = "Coming soon";
+        nextPositionB = "Coming soon";
+        nextPositionC = "Coming soon";
+        nextPositionD = "Coming soon";
 
         currentPosition = "Camp";
     }
@@ -176,14 +179,14 @@ private void showAllButtons(){
         gs.variantDBtn.setText(R.string.get_closer_and_get_more_information);
 
         nextPositionA = "Circling around";
-        nextPositionB = "Retreat from forest";
+        nextPositionB = "Mine";
         nextPositionC = "Camp infiltration";
-        nextPositionD = "Closer to enemy";
+        nextPositionD = "Mine";
 
         currentPosition = "Observation";
     }
     public void campInfiltration(){
-        gs.sceneImage.setImageResource(R.drawable.achievement);
+        gs.sceneImage.setImageResource(R.drawable.medal);
         gs.sceneText.setText(R.string.infiltration_text);
 
         gs.variantABtn.setVisibility(View.INVISIBLE);
@@ -192,6 +195,10 @@ private void showAllButtons(){
         gs.variantDBtn.setText(R.string.back_to_main_menu);
         gs.menuBtn.setVisibility(View.INVISIBLE);
         gs.variantDBtn.setOnClickListener(v -> gs.mainMenu());
+
+        HallOfFame.isCampInfiltrationAchieved = true;
+
+        gs.saveEndings();
 
         currentPosition = "Camp infiltration";
     }
@@ -240,7 +247,67 @@ private void showAllButtons(){
         gs.variantDBtn.setText(R.string.back_to_main_menu);
         gs.variantDBtn.setOnClickListener(v -> gs.mainMenu());
 
+        HallOfFame.isHeroAchieved = true;
+
+        gs.saveEndings();
+
         currentPosition = "Hero";
+    }
+
+    public void treasure(){
+        gs.sceneImage.setImageResource(R.drawable.open_treasure_chest);
+        gs.sceneText.setText(R.string.treasure);
+
+        gs.variantABtn.setVisibility(View.INVISIBLE);
+        gs.variantBBtn.setVisibility(View.INVISIBLE);
+        gs.variantCBtn.setVisibility(View.INVISIBLE);
+        gs.menuBtn.setVisibility(View.INVISIBLE);
+        gs.variantDBtn.setText(R.string.back_to_main_menu);
+        gs.variantDBtn.setOnClickListener(v -> gs.mainMenu());
+
+        HallOfFame.isTreasureAchieved = true;
+
+        gs.saveEndings();
+
+        currentPosition = "Treasure";
+
+    }
+    public void interception(){
+        gs.sceneImage.setImageResource(R.drawable.hasty_grave);
+        gs.sceneText.setText(R.string.interception);
+
+        gs.variantABtn.setVisibility(View.INVISIBLE);
+        gs.variantBBtn.setVisibility(View.INVISIBLE);
+        gs.variantCBtn.setVisibility(View.INVISIBLE);
+        gs.menuBtn.setVisibility(View.INVISIBLE);
+        gs.variantDBtn.setText(R.string.back_to_main_menu);
+        gs.variantDBtn.setOnClickListener(v -> gs.mainMenu());
+
+        HallOfFame.isInterceptionAchieved = true;
+
+        gs.saveEndings();
+
+        currentPosition = "Interception";
+
+    }
+
+    public void comingSoon(){
+        gs.sceneImage.setImageResource(R.drawable.coming_soon);
+        gs.sceneText.setText(R.string.coming_soon);
+
+        gs.variantABtn.setVisibility(View.INVISIBLE);
+        gs.variantBBtn.setVisibility(View.INVISIBLE);
+        gs.variantCBtn.setVisibility(View.INVISIBLE);
+        gs.menuBtn.setVisibility(View.INVISIBLE);
+        gs.variantDBtn.setText(R.string.back_to_main_menu);
+        gs.variantDBtn.setOnClickListener(v -> gs.mainMenu());
+
+        HallOfFame.isComingSoonAchieved = true;
+
+        gs.saveEndings();
+
+        currentPosition = "Coming soon";
+
     }
 
 

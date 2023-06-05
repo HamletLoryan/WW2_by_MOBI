@@ -12,5 +12,8 @@
     <string name="circling_around_text">Due to your sudden attack, the German soldiers surrendered. Now you have the information you needed, but the British guy tells you that their base is in trouble and wants you to help them.</string>
     <string name="mine_text">"There were no signs of trouble, but suddenly, boom! A mine appeared under your foot. You died, and no one knows what happened later. "</string>
     <string name="hero">You came home. And because you served with honor, you and your group were given a medal as WW2 heroes. The information you gained helped in planning the invasion of France.</string>
+    <string name="treasure">While you were digging a trench, you found a chest full of gold. Maybe it was left by Jews, or maybe it belonged to Nazi soldiers—no one knows. You and your team decided to divide the treasure. And start a new life. You moved to Italy and lived in richness. Meanwhile, the war ended, but because you didn\'t finish your mission, it ended in 1967 with the victory of the USSR. Adolf Hitler was judged and condemned to death. But he died in prison in 1970.</string>
+    <string name="interception">You tried to intercept the group of enemies, but you didn\'t know that this was only the first division of a huge legion. You and your group died during fights. You fought heroically, but sadly, no one will remember your heroism.</string>
+    <string name="coming_soon">Oops! This path is being created right now. It\'s coming soon.</string>
 
 </resources>

@@ -50,9 +50,11 @@
             android:layout_margin="5dp"
             android:background="@drawable/background"
             android:scaleType="fitCenter"
-            android:src="@drawable/mine_explosion" />
+            android:src="@drawable/mine_explosion"
+            android:contentDescription="@string/mine_ending" />
 
         <ImageButton
+            android:id="@+id/hero_ending"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -60,9 +62,11 @@
             android:layout_margin="5dp"
             android:background="@drawable/background"
             android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
+            android:src="@drawable/achievement"
+            android:contentDescription="@string/hero_ending" />
 
         <ImageButton
+            android:id="@+id/treasure_ending"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -70,9 +74,11 @@
             android:layout_margin="5dp"
             android:background="@drawable/background"
             android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
+            android:src="@drawable/open_treasure_chest"
+            android:contentDescription="@string/treasure_ending" />
 
         <ImageButton
+            android:id="@+id/camp_infiltration_ending"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -80,9 +86,11 @@
             android:layout_margin="5dp"
             android:background="@drawable/background"
             android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
+            android:src="@drawable/medal"
+            android:contentDescription="@string/camp_infiltration_ending" />
 
         <ImageButton
+            android:id="@+id/interception_ending"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -90,9 +98,11 @@
             android:layout_margin="5dp"
             android:background="@drawable/background"
             android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
+            android:src="@drawable/hasty_grave"
+            android:contentDescription="@string/interception_ending" />
 
         <ImageButton
+            android:id="@+id/coming_soon_ending"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -100,47 +110,10 @@
             android:layout_margin="5dp"
             android:background="@drawable/background"
             android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
+            android:src="@drawable/coming_soon"
+            android:contentDescription="@string/coming_soon_ending" />
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"
-            android:background="@drawable/background"
-            android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"
-            android:background="@drawable/background"
-            android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"
-            android:background="@drawable/background"
-            android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp"
-            android:background="@drawable/background"
-            android:scaleType="fitCenter"
-            android:src="@drawable/achievement" />
 
 
     </GridLayout>
