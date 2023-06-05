@@ -1,12 +1,9 @@
 package com.example.ww2inyourhands;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
 
@@ -29,7 +28,7 @@ public class HallOfFame extends AppCompatActivity {
     public static boolean isCampInfiltrationAchieved = false;
     public static boolean isTreasureAchieved = false;
     public static boolean isInterceptionAchieved = false;
-    public static boolean isComingSoonAchieved= false;
+    public static boolean isComingSoonAchieved = false;
 
 
     Button backButton;
@@ -50,7 +49,7 @@ public class HallOfFame extends AppCompatActivity {
         ComingSoonEnding = findViewById(R.id.coming_soon_ending);
         TreasureEnding = findViewById(R.id.treasure_ending);
 
-        if(LoginActivity.loggedIn)getEndings();
+        if (LoginActivity.loggedIn) getEndings();
 
         SharedPreferences sp = getSharedPreferences("Endings", MODE_PRIVATE);
         HallOfFame.isMineAchieved = sp.getBoolean("Mine", false);
@@ -63,63 +62,57 @@ public class HallOfFame extends AppCompatActivity {
     }
 
     private void updateEndings() {
-        if(isMineAchieved){
+        if (isMineAchieved) {
             MineEnding.setImageResource(R.drawable.mine_explosion);
             MineEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.mine_explosion, R.drawable.background, R.string.mine_ending_text));
             MineEnding.setBackgroundResource(R.drawable.background);
-        }
-        else{
+        } else {
             MineEnding.setImageResource(R.drawable.padlock);
             MineEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.padlock, R.drawable.background3, R.string.this_ending_is_not_achieved_yet));
             MineEnding.setBackgroundResource(R.drawable.background3);
         }
 
-        if(isHeroAchieved){
+        if (isHeroAchieved) {
             HeroEnding.setImageResource(R.drawable.achievement);
             HeroEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.achievement, R.drawable.background, R.string.hero_ending_text));
             HeroEnding.setBackgroundResource(R.drawable.background);
-        }
-        else{
+        } else {
             HeroEnding.setImageResource(R.drawable.padlock);
             HeroEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.padlock, R.drawable.background3, R.string.this_ending_is_not_achieved_yet));
             HeroEnding.setBackgroundResource(R.drawable.background3);
         }
-        if(isCampInfiltrationAchieved){
+        if (isCampInfiltrationAchieved) {
             CampInfiltrationEnding.setImageResource(R.drawable.medal);
             CampInfiltrationEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.medal, R.drawable.background, R.string.camp_infiltration_ending_text));
             CampInfiltrationEnding.setBackgroundResource(R.drawable.background);
-        }
-        else{
+        } else {
             CampInfiltrationEnding.setImageResource(R.drawable.padlock);
             CampInfiltrationEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.padlock, R.drawable.background3, R.string.this_ending_is_not_achieved_yet));
             CampInfiltrationEnding.setBackgroundResource(R.drawable.background3);
         }
-        if(isTreasureAchieved){
+        if (isTreasureAchieved) {
             TreasureEnding.setImageResource(R.drawable.open_treasure_chest);
             TreasureEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.open_treasure_chest, R.drawable.background, R.string.treasure_ending_text));
             TreasureEnding.setBackgroundResource(R.drawable.background);
-        }
-        else{
+        } else {
             TreasureEnding.setImageResource(R.drawable.padlock);
             TreasureEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.padlock, R.drawable.background3, R.string.this_ending_is_not_achieved_yet));
             TreasureEnding.setBackgroundResource(R.drawable.background3);
         }
-        if(isInterceptionAchieved){
+        if (isInterceptionAchieved) {
             InterceptionEnding.setImageResource(R.drawable.hasty_grave);
             InterceptionEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.hasty_grave, R.drawable.background, R.string.interception_ending_text));
             InterceptionEnding.setBackgroundResource(R.drawable.background);
-        }
-        else{
+        } else {
             InterceptionEnding.setImageResource(R.drawable.padlock);
             InterceptionEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.padlock, R.drawable.background3, R.string.this_ending_is_not_achieved_yet));
             InterceptionEnding.setBackgroundResource(R.drawable.background3);
         }
-        if(isComingSoonAchieved){
+        if (isComingSoonAchieved) {
             ComingSoonEnding.setImageResource(R.drawable.coming_soon);
             ComingSoonEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.coming_soon, R.drawable.background, R.string.coming_soon_ending_text));
             ComingSoonEnding.setBackgroundResource(R.drawable.background);
-        }
-        else{
+        } else {
             ComingSoonEnding.setImageResource(R.drawable.padlock);
             ComingSoonEnding.setOnClickListener(v -> showEndingDialog(HallOfFame.this, R.drawable.padlock, R.drawable.background3, R.string.this_ending_is_not_achieved_yet));
             ComingSoonEnding.setBackgroundResource(R.drawable.background3);
@@ -127,7 +120,7 @@ public class HallOfFame extends AppCompatActivity {
 
     }
 
-    public void showEndingDialog(Activity activity, int imageRes, int backgroundRes, int textRes){
+    public void showEndingDialog(Activity activity, int imageRes, int backgroundRes, int textRes) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -144,7 +137,8 @@ public class HallOfFame extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){}
+    public void onBackPressed() {
+    }
 
     public void getEndings() {
         DocumentReference dr = Utilities.getDocumentReferenceForEndings();

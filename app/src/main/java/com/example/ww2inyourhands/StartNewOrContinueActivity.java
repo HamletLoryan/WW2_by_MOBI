@@ -1,7 +1,5 @@
 package com.example.ww2inyourhands;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -11,6 +9,8 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class StartNewOrContinueActivity extends AppCompatActivity {
     Button newGameBtn, continueBtn, backButton;
 
@@ -18,19 +18,16 @@ public class StartNewOrContinueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_new_or_continue);
-        if(!LoginActivity.loggedIn){
+        if (!LoginActivity.loggedIn) {
             showDialog(StartNewOrContinueActivity.this);
         }
-
-
-
 
 
         continueBtn = findViewById(R.id.continue_button);
         newGameBtn = findViewById(R.id.new_game_button);
         backButton = findViewById(R.id.back_btn);
-        newGameBtn.setOnClickListener(v-> startActivity(new Intent(StartNewOrContinueActivity.this, GameScene.class)));
-        continueBtn.setOnClickListener(v-> startActivity(new Intent(StartNewOrContinueActivity.this, SlotsActivity.class)));
+        newGameBtn.setOnClickListener(v -> startActivity(new Intent(StartNewOrContinueActivity.this, GameScene.class)));
+        continueBtn.setOnClickListener(v -> startActivity(new Intent(StartNewOrContinueActivity.this, SlotsActivity.class)));
         backButton.setOnClickListener(v -> startActivity(new Intent(StartNewOrContinueActivity.this, StartMenu.class)));
 
 
@@ -52,8 +49,9 @@ public class StartNewOrContinueActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
 
     }
 

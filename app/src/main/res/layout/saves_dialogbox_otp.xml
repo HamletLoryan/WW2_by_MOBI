@@ -4,8 +4,8 @@
     android:layout_width="250dp"
     android:layout_height="300dp"
     android:background="@drawable/background"
-    tools:context=".GameScene"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".GameScene">
 
     <TextView
         android:id="@+id/text"

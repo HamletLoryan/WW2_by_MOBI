@@ -1,7 +1,7 @@
 package com.example.ww2inyourhands;
 
 public class Endings {
-    boolean Mine, Hero, Interception, CampInfiltration, ComingSoon,Treasure;
+    boolean Mine, Hero, Interception, CampInfiltration, ComingSoon, Treasure;
 
     public Endings() {
     }

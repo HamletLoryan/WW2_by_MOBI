@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    android:background="@color/text_color"
-    tools:context=".HallOfFame"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/text_color"
+    tools:context=".HallOfFame">
 
     <Button
         android:id="@+id/back_btn"
@@ -25,21 +24,21 @@
         android:layout_height="match_parent"
         android:layout_above="@id/endings_grid"
         android:layout_toEndOf="@id/back_btn"
-        android:text="@string/hall_of_fame"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        android:textSize="40sp"
         android:gravity="end|bottom"
+        android:paddingHorizontal="10dp"
+        android:text="@string/hall_of_fame"
+        android:textAllCaps="true"
         android:textColor="@color/my_color"
-        android:paddingHorizontal="10dp"/>
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <GridLayout
+        android:id="@+id/endings_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/back_btn"
         android:columnCount="2"
-        android:rowCount="5"
-        android:id="@+id/endings_grid">
+        android:rowCount="5">
 
         <ImageButton
             android:id="@+id/mine_ending"
@@ -49,9 +48,9 @@
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
             android:background="@drawable/background"
+            android:contentDescription="@string/mine_ending"
             android:scaleType="fitCenter"
-            android:src="@drawable/mine_explosion"
-            android:contentDescription="@string/mine_ending" />
+            android:src="@drawable/mine_explosion" />
 
         <ImageButton
             android:id="@+id/hero_ending"
@@ -61,9 +60,9 @@
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
             android:background="@drawable/background"
+            android:contentDescription="@string/hero_ending"
             android:scaleType="fitCenter"
-            android:src="@drawable/achievement"
-            android:contentDescription="@string/hero_ending" />
+            android:src="@drawable/achievement" />
 
         <ImageButton
             android:id="@+id/treasure_ending"
@@ -73,9 +72,9 @@
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
             android:background="@drawable/background"
+            android:contentDescription="@string/treasure_ending"
             android:scaleType="fitCenter"
-            android:src="@drawable/open_treasure_chest"
-            android:contentDescription="@string/treasure_ending" />
+            android:src="@drawable/open_treasure_chest" />
 
         <ImageButton
             android:id="@+id/camp_infiltration_ending"
@@ -85,9 +84,9 @@
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
             android:background="@drawable/background"
+            android:contentDescription="@string/camp_infiltration_ending"
             android:scaleType="fitCenter"
-            android:src="@drawable/medal"
-            android:contentDescription="@string/camp_infiltration_ending" />
+            android:src="@drawable/medal" />
 
         <ImageButton
             android:id="@+id/interception_ending"
@@ -97,9 +96,9 @@
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
             android:background="@drawable/background"
+            android:contentDescription="@string/interception_ending"
             android:scaleType="fitCenter"
-            android:src="@drawable/hasty_grave"
-            android:contentDescription="@string/interception_ending" />
+            android:src="@drawable/hasty_grave" />
 
         <ImageButton
             android:id="@+id/coming_soon_ending"
@@ -109,11 +108,9 @@
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
             android:background="@drawable/background"
+            android:contentDescription="@string/coming_soon_ending"
             android:scaleType="fitCenter"
-            android:src="@drawable/coming_soon"
-            android:contentDescription="@string/coming_soon_ending" />
-
-
+            android:src="@drawable/coming_soon" />
 
 
     </GridLayout>

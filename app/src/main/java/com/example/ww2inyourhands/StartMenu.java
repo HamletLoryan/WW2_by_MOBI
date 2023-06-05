@@ -1,13 +1,11 @@
 package com.example.ww2inyourhands;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class StartMenu extends AppCompatActivity {
@@ -21,7 +19,6 @@ public class StartMenu extends AppCompatActivity {
         setContentView(R.layout.activity_start_menu);
 
 
-
         playBtn = findViewById(R.id.play_button);
         hallOfFameBtn = findViewById(R.id.hall_of_fame_button);
         accountBtn = findViewById(R.id.account_button);
@@ -32,9 +29,7 @@ public class StartMenu extends AppCompatActivity {
         hallOfFameBtn.setOnClickListener(v -> startActivity(new Intent(StartMenu.this, HallOfFame.class)));
 
 
-
     }
-
 
 
     private void accountButton(boolean loggedIn) {

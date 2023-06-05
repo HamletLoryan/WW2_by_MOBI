@@ -10,42 +10,72 @@ public class Story {
 
     String nextPositionA, nextPositionB, nextPositionC, nextPositionD, currentPosition;
 
-    public Story(GameScene gs){
+    public Story(GameScene gs) {
 
         this.gs = gs;
     }
 
-    public void setPosition(String position){
-        switch (position){
-            case "Commander": commander(); break;
-            case "Start Point": startPoint(); break;
-            case "The Mission starts": theMissionStarts(); break;
-            case "Stealth": stealth(); break;
-            case "Vantage point": vantagePoint(); break;
-            case "Locals": locals(); break;
-            case "Camp": camp(); break;
-            case "Hero": hero(); break;
-            case "Treasure": treasure(); break;
-            case "Interception": interception();break;
-            case "Mine": mine(); break;
-            case "Coming soon": comingSoon(); break;
-            case "Observation": observation(); break;
-            case "Camp infiltration": campInfiltration(); break;
-            case "Circling around": circlingAround(); break;
+    public void setPosition(String position) {
+        switch (position) {
+            case "Commander":
+                commander();
+                break;
+            case "Start Point":
+                startPoint();
+                break;
+            case "The Mission starts":
+                theMissionStarts();
+                break;
+            case "Stealth":
+                stealth();
+                break;
+            case "Vantage point":
+                vantagePoint();
+                break;
+            case "Locals":
+                locals();
+                break;
+            case "Camp":
+                camp();
+                break;
+            case "Hero":
+                hero();
+                break;
+            case "Treasure":
+                treasure();
+                break;
+            case "Interception":
+                interception();
+                break;
+            case "Mine":
+                mine();
+                break;
+            case "Coming soon":
+                comingSoon();
+                break;
+            case "Observation":
+                observation();
+                break;
+            case "Camp infiltration":
+                campInfiltration();
+                break;
+            case "Circling around":
+                circlingAround();
+                break;
 
         }
 
     }
 
-private void showAllButtons(){
-    gs.variantABtn.setVisibility(View.VISIBLE);
-    gs.variantBBtn.setVisibility(View.VISIBLE);
-    gs.variantCBtn.setVisibility(View.VISIBLE);
-    gs.variantCBtn.setVisibility(View.VISIBLE);
+    private void showAllButtons() {
+        gs.variantABtn.setVisibility(View.VISIBLE);
+        gs.variantBBtn.setVisibility(View.VISIBLE);
+        gs.variantCBtn.setVisibility(View.VISIBLE);
+        gs.variantCBtn.setVisibility(View.VISIBLE);
 
-}
+    }
 
-    public void startPoint(){
+    public void startPoint() {
 
         gs.sceneImage.setImageResource(R.drawable.usa_flag);
         gs.sceneText.setText(R.string.startPoint);
@@ -66,7 +96,7 @@ private void showAllButtons(){
 
     }
 
-    public void commander(){
+    public void commander() {
 
         gs.sceneImage.setImageResource(R.drawable.commander);
         gs.sceneText.setText(R.string.commander);
@@ -84,7 +114,7 @@ private void showAllButtons(){
         currentPosition = "Commander";
     }
 
-    public void theMissionStarts(){
+    public void theMissionStarts() {
         gs.sceneImage.setImageResource(R.drawable.author_speech);
         gs.sceneText.setText(R.string.theMissionStartsText);
 
@@ -103,7 +133,7 @@ private void showAllButtons(){
         currentPosition = "The Mission starts";
     }
 
-    public void stealth(){
+    public void stealth() {
         gs.sceneImage.setImageResource(R.drawable.forest);
         gs.sceneText.setText(R.string.stealth);
 
@@ -119,7 +149,8 @@ private void showAllButtons(){
 
         currentPosition = "Stealth";
     }
-    public void vantagePoint(){
+
+    public void vantagePoint() {
         gs.sceneImage.setImageResource(R.drawable.binoculars);
         gs.sceneText.setText(R.string.vantagePoint);
 
@@ -135,7 +166,8 @@ private void showAllButtons(){
 
         currentPosition = "Vantage point";
     }
-    public void locals(){
+
+    public void locals() {
         gs.sceneImage.setImageResource(R.drawable.village);
         gs.sceneText.setText(R.string.locals);
 
@@ -151,7 +183,8 @@ private void showAllButtons(){
 
         currentPosition = "Locals";
     }
-    public void camp(){
+
+    public void camp() {
         gs.sceneImage.setImageResource(R.drawable.forest_camp);
         gs.sceneText.setText(R.string.camp);
 
@@ -169,7 +202,7 @@ private void showAllButtons(){
     }
 
 
-    public void observation(){
+    public void observation() {
         gs.sceneImage.setImageResource(R.drawable.binoculars);
         gs.sceneText.setText(R.string.during_the_observation_you_found_out_that_the_enemy_keeps_some_british_soldiers_as_captives_what_do_you_do);
 
@@ -185,7 +218,8 @@ private void showAllButtons(){
 
         currentPosition = "Observation";
     }
-    public void campInfiltration(){
+
+    public void campInfiltration() {
         gs.sceneImage.setImageResource(R.drawable.medal);
         gs.sceneText.setText(R.string.infiltration_text);
 
@@ -202,7 +236,8 @@ private void showAllButtons(){
 
         currentPosition = "Camp infiltration";
     }
-    public void circlingAround(){
+
+    public void circlingAround() {
         gs.sceneImage.setImageResource(R.drawable.annexation);
         gs.sceneText.setText(R.string.circling_around_text);
 
@@ -219,7 +254,7 @@ private void showAllButtons(){
         currentPosition = "Circling around";
     }
 
-    public void mine(){
+    public void mine() {
         gs.sceneImage.setImageResource(R.drawable.mine_explosion);
         gs.sceneText.setText(R.string.mine_text);
 
@@ -236,7 +271,8 @@ private void showAllButtons(){
 
         currentPosition = "Mine";
     }
-    public void hero(){
+
+    public void hero() {
         gs.sceneImage.setImageResource(R.drawable.achievement);
         gs.sceneText.setText(R.string.hero);
 
@@ -254,7 +290,7 @@ private void showAllButtons(){
         currentPosition = "Hero";
     }
 
-    public void treasure(){
+    public void treasure() {
         gs.sceneImage.setImageResource(R.drawable.open_treasure_chest);
         gs.sceneText.setText(R.string.treasure);
 
@@ -272,7 +308,8 @@ private void showAllButtons(){
         currentPosition = "Treasure";
 
     }
-    public void interception(){
+
+    public void interception() {
         gs.sceneImage.setImageResource(R.drawable.hasty_grave);
         gs.sceneText.setText(R.string.interception);
 
@@ -291,7 +328,7 @@ private void showAllButtons(){
 
     }
 
-    public void comingSoon(){
+    public void comingSoon() {
         gs.sceneImage.setImageResource(R.drawable.coming_soon);
         gs.sceneText.setText(R.string.coming_soon);
 
@@ -309,11 +346,6 @@ private void showAllButtons(){
         currentPosition = "Coming soon";
 
     }
-
-
-
-
-
 
 
 }

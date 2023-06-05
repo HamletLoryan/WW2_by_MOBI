@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,12 +28,12 @@
         android:background="@drawable/background"
         android:padding="8dp"
         android:text="@string/chose_the_game_you_want_to_continue"
+        android:textAlignment="viewStart"
         android:textColor="@color/text_color"
         android:textSize="22sp"
-        android:textStyle="bold"
-        android:textAlignment="viewStart" />
+        android:textStyle="bold" />
+
     <Button
-        android:textAlignment="viewStart"
         android:id="@+id/autoSave"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -42,13 +42,13 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="2dp"
         android:text="@string/auto_saved"
+        android:textAlignment="viewStart"
         android:textColor="@color/text_color"
         android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="VisualLintButtonSize" />
 
     <Button
-        android:textAlignment="viewStart"
         android:id="@+id/slot1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -57,13 +57,13 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="2dp"
         android:text="@string/slot_1"
+        android:textAlignment="viewStart"
         android:textColor="@color/text_color"
         android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="VisualLintButtonSize" />
 
     <Button
-        android:textAlignment="viewStart"
         android:id="@+id/slot2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -72,6 +72,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="2dp"
         android:text="@string/slot_2"
+        android:textAlignment="viewStart"
         android:textColor="@color/text_color"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -79,7 +80,6 @@
         tools:ignore="VisualLintButtonSize" />
 
     <Button
-        android:textAlignment="viewStart"
         android:id="@+id/slot3"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -88,6 +88,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="2dp"
         android:text="@string/slot_3"
+        android:textAlignment="viewStart"
         android:textColor="@color/text_color"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -95,14 +96,14 @@
         tools:ignore="VisualLintButtonSize" />
 
     <Button
-        android:contentDescription="@string/delete_all_saves"
         android:id="@+id/delete_btn"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/baseline_delete_outline_24"/>
+        android:background="@drawable/baseline_delete_outline_24"
+        android:contentDescription="@string/delete_all_saves" />
 
 </RelativeLayout>
